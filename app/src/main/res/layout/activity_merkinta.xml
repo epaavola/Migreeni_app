@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".merkinta">
+
+    <TextView
+        android:id="@+id/merkinta_otsikko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="@string/merkinta_otsikko"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pvm_otiskko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="121dp"
+        android:text="@string/pvm_otsikko"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/aika_otsikko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="54dp"
+        android:text="@string/aika_otsikko"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pvm_otiskko" />
+
+    <TextView
+        android:id="@+id/laakkeet_otsikko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="54dp"
+        android:text="@string/laakkeet_otsikko"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aika_otsikko" />
+
+    <TextView
+        android:id="@+id/kipu_otsikko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="54dp"
+        android:text="@string/kipu_otsikko"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/laakkeet_otsikko" />
+
+    <TextView
+        android:id="@+id/lisatietoja_otsikko"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="54dp"
+        android:text="@string/Lisatietoja_otsikko"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kipu_otsikko" />
+
+    <Button
+        android:id="@+id/tallenna_merkinta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"
+        android:onClick="tallenna_merkinta"
+        android:text="@string/tallenna_merkintä"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/pick_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:autofillHints="@android:string/autofill"
+        android:ems="10"
+        android:focusable="False"
+        android:hint="@android:string/autofill"
+        android:inputType="date"
+        android:text="@string/päivämäärä_placehold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/pvm_otiskko"
+        app:layout_constraintStart_toEndOf="@+id/pvm_otiskko" />
+
+    <EditText
+        android:id="@+id/set_lisatietoja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:autofillHints="@android:string/autofill"
+        android:ems="10"
+        android:hint="@android:string/autofill"
+        android:inputType="textPersonName"
+        android:text="@string/lisatietoja_placeholder"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lisatietoja_otsikko"
+        app:layout_constraintStart_toEndOf="@+id/lisatietoja_otsikko" />
+
+</android.support.constraint.ConstraintLayout>
