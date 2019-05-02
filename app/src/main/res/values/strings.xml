@@ -21,4 +21,10 @@
     <string name="tallenna_merkintä">Tallenna</string>
     <string name="päivämäärä_placehold">1/1/2019</string>
     <string name="lisatietoja_placeholder">Kirjoita tähän</string>
+
+    <string name="vanhat_merkinnat_otsikko">Aiemmat merkinnät</string>
+    <string name="viime_merkinta_def_arvo">0</string>
+
+    <string name="vanhat_merkinnat_avattu_otsikko">Otsikko_placeholder</string>
+    <string name="vanhat_merkinnat_avattu_info">Sisältö_placeholder</string>
 </resources>
