@@ -27,4 +27,7 @@
 
     <string name="vanhat_merkinnat_avattu_otsikko">Otsikko_placeholder</string>
     <string name="vanhat_merkinnat_avattu_info">Sisältö_placeholder</string>
+
+    <string name="kalenteri_otsikko">Kalenteri</string>
+    <string name="kalenteri_pvm"> </string>
 </resources>
