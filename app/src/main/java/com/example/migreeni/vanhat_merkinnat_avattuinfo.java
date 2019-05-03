@@ -14,11 +14,28 @@ public class vanhat_merkinnat_avattuinfo extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         int position = b.getInt(vanhat_merkinnat.EXTRA, 0);
 
-        //esim. String nimi = juttuLista.getInstance().getJutut().get(position).getNimi();
-        String muuttuja = "muuttuja";
 
-        TextView tv = findViewById(R.id.vanhat_merkinnat_info);
-        tv.setText(muuttuja);
+        String date = "Päivämäärä: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getPaivamaara();
+        String time = "Aika: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getAika();
+        String medic = "Otettu lääke: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getLaake();
+        String pain = "Kipu: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getKipu();
+        String extra = "Lisätietoja: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getLisatiedot();
+
+
+        TextView tv1 = findViewById(R.id.textView_date);
+        tv1.setText(date);
+
+        TextView tv2 = findViewById(R.id.textView_time);
+        tv2.setText(time);
+
+        TextView tv3 = findViewById(R.id.textView_medic);
+        tv3.setText(medic);
+
+        TextView tv4 = findViewById(R.id.textView_pain);
+        tv4.setText(pain);
+
+        TextView tv5 = findViewById(R.id.textView_extra);
+        tv5.setText(extra);
 
     }
 }
