@@ -6,10 +6,10 @@ public class Uusi_merkinta {
     String paivamaara;
     String aika;
     String laake;
-    Integer kipu;
+    String kipu;
     String lisatiedot;
 
-    public Uusi_merkinta(String pvm, String aika, String laake, int kipu, String lisatiedot) {
+    public Uusi_merkinta(String pvm, String aika, String laake, String kipu, String lisatiedot) {
         this.paivamaara = pvm;
         this.aika = aika;
         this.laake = laake;
@@ -29,9 +29,11 @@ public class Uusi_merkinta {
     public String getLisatiedot(){
         return this.lisatiedot;
     }
-    public int getKipu(){
+    public String getKipu(){
         return this.kipu;
     }
 
-
+    public String toString() {
+        return this.paivamaara;
+    }
 }

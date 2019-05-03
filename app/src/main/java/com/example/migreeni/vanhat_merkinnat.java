@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 public class vanhat_merkinnat extends AppCompatActivity {
 
     private static final String tagi = "Merkkaus";
@@ -20,9 +22,10 @@ public class vanhat_merkinnat extends AppCompatActivity {
         setContentView(R.layout.activity_vanhat_merkinnat);
 
         Log.d(tagi, "aktiviteetissa: vanhat merkinnat");
+        List merkinnat_lista = Merkinta_lista.getInstance().getMerkinnat();
 
         ListView lv = findViewById(R.id.vanhat_merkinnat_lista);
-        ArrayAdapter adapter = (new ArrayAdapter<>(this, android.R.layout.simple_list_item_1)); // lisää vrt , Juttulista.getInstance.getJutut());
+        ArrayAdapter adapter = (new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, merkinnat_lista)); // lisää vrt , Juttulista.getInstance.getJutut());
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

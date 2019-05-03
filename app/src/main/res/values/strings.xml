@@ -30,4 +30,15 @@
 
     <string name="kalenteri_otsikko">Kalenteri</string>
     <string name="kalenteri_pvm"> </string>
+    <string name="time_picker">12:00</string>
+    <string name="aika_valinta_viiva">viiva</string>
+    <string name="Ibuprofeeni">Ibuprofeeni</string>
+    <string name="Parasetamoli">Parasetamoli</string>
+    <string name="Täsmälääke">Täsmälääke</string>
+    <string name="kipumittari1">Ei kipua</string>
+    <string name="kipumittari2">Lievä</string>
+    <string name="kipumittari3">Kohtalainen</string>
+    <string name="kipumittari4">Voimakas</string>
+    <string name="kipumittari5">Sietämätön</string>
+
 </resources>
