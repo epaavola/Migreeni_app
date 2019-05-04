@@ -1,5 +1,8 @@
 package com.example.migreeni;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +10,12 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class merkinta extends AppCompatActivity {
 
@@ -24,6 +33,7 @@ public class merkinta extends AppCompatActivity {
         time_picker fromTime1 = new time_picker(editTextFromTime1, this);
         time_picker fromTime2 = new time_picker(editTextFromTime2, this);
     }
+
 
     public void tallenna_merkinta(View view){
         String laake = "Ei lääkitystä";
@@ -102,12 +112,15 @@ public class merkinta extends AppCompatActivity {
 
         // Add the note object to the list so we can easily access data and also hash it
         Merkinta_lista.getInstance().getMerkinnat().add(merkinta);
+        saveData();
 
-
-        Log.d("MSG", Merkinta_lista.getInstance().getMerkinnat().get(0).paivamaara);
-        Log.d("MSG", Merkinta_lista.getInstance().getMerkinnat().get(0).aika);
-        Log.d("MSG", Merkinta_lista.getInstance().getMerkinnat().get(0).laake);
-        Log.d("MSG", Merkinta_lista.getInstance().getMerkinnat().get(0).kipu);
-        Log.d("MSG", Merkinta_lista.getInstance().getMerkinnat().get(0).lisatiedot);
+    }
+    public void saveData() {
+        SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+        editor.putString("list", json);
+        editor.apply();
     }
 }

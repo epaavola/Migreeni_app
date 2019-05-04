@@ -21,4 +21,9 @@ class Merkinta_lista {
     public ArrayList<Uusi_merkinta> getMerkinnat(){
         return (ArrayList<Uusi_merkinta>) merkinnat;
     }
+
+    public void setMerkinnat(ArrayList<Uusi_merkinta> list){
+        this.merkinnat = list;
+    }
+
 }
