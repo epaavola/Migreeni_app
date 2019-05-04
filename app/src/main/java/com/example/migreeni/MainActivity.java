@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadData();
+        loadData(); // Load data from Shared Preferences
     }
 
     public void kalenteri_icon(View view) {
@@ -54,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    //    Save and get ArrayList in SharedPreference
-
-
+    // Load list of entries from shared preferences
     public void loadData() {
         SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();

@@ -26,4 +26,6 @@ class Merkinta_lista {
         this.merkinnat = list;
     }
 
+    public void clearMerkinnat() {this.merkinnat = new ArrayList<>();}
+
 }

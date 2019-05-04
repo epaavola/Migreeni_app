@@ -115,6 +115,7 @@ public class merkinta extends AppCompatActivity {
         saveData();
 
     }
+    // Save list of entries to the shared preferences
     public void saveData() {
         SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
