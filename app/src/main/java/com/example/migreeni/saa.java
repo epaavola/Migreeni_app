@@ -68,6 +68,9 @@ public class saa extends AppCompatActivity {
                 longtitude = String.valueOf(location.getLongitude());
                 Log.d(TAG,"lat" + latitude);
                 Log.d(TAG,"long" + longtitude);
+
+                hae_saa(latitude, longtitude);
+
             }
 
             @Override
@@ -86,12 +89,12 @@ public class saa extends AppCompatActivity {
                 Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(asetukset);
             }
+
+
         };
 
         lataa_paikka();
 
-
-        hae_saa(latitude, longtitude);
     }
 
 
@@ -108,7 +111,10 @@ public class saa extends AppCompatActivity {
 
     public void lataa_paikka() {
         // first check for permissions // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
             ,10);
@@ -116,17 +122,19 @@ public class saa extends AppCompatActivity {
             return;
         } else {
             //noinspection MissingPermission
-            location_manager.requestLocationUpdates("gps", 5000, 0, location_listener);
+            location_manager.requestLocationUpdates("gps", 0, 500, location_listener);
         }
     }
 
 
     public void hae_saa(String lat, String longt) {
 
-        String latitude = lat;
-        String longtitude = longt;
+        //String latitude = lat;
+        //String longtitude = longt;
+        Log.d(TAG,"latii" + lat);
+        Log.d(TAG,"longii" + longt);
 
-        String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longtitude + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
+        String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + longt + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
 
         JsonObjectRequest haku = new JsonObjectRequest (Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
 
