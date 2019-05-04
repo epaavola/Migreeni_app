@@ -32,17 +32,18 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-public class saa extends AppCompatActivity implements LocationListener {
+public class saa extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
     private TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta;
     private ImageView tv_ikoni;
     private RequestQueue mQueue;
-    public String ikoniUrl = "";
+    public String ikoniUrl = "", latitude, longtitude;
     private Context context;
 
     private LocationManager location_manager;
+    private LocationListener location_listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,73 +59,43 @@ public class saa extends AppCompatActivity implements LocationListener {
 
         mQueue = Volley.newRequestQueue(this);
 
-        location_manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
+        location_manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-        String provider = location_manager.getBestProvider(criteria, true);
+        location_listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                latitude = String.valueOf(location.getLatitude());
+                longtitude = String.valueOf(location.getLongitude());
+                Log.d(TAG,"lat" + latitude);
+                Log.d(TAG,"long" + longtitude);
+            }
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location location = location_manager.getLastKnownLocation(provider);
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
 
-        //location_manager.requestLocationUpdates(location_manager.GPS_PROVIDER, 0, 0, this);
+            }
 
-        //Location location = location_manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            @Override
+            public void onProviderEnabled(String s) {
 
-        onLocationChanged(location);
+            }
 
-        //lataa_paikka();
 
-        //hae_saa();
-    }
+            @Override
+            public void onProviderDisabled(String provider) {
+                Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(asetukset);
+            }
+        };
 
-    @Override
-    public void onLocationChanged(Location location) {
-        //String latitude = String.valueOf(location.getLatitude());
-        //String longtitude = String.valueOf(location.getLongitude());
-        double pitka = location.getLongitude();
-        double poikki = location.getLatitude();
+        lataa_paikka();
 
-        Log.d(TAG, "pitka: " + pitka);
-        Log.d(TAG, "poikki: " + poikki);
-
-        String latitude = Double.toString(pitka);
-        String longtitude = Double.toString(poikki);
-
-        Log.d(TAG,"lat: " + latitude);
-        Log.d(TAG, "long: " + longtitude);
 
         hae_saa(latitude, longtitude);
-
     }
 
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
 
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-   /* public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
             case 10:
                 lataa_paikka();
@@ -147,7 +118,7 @@ public class saa extends AppCompatActivity implements LocationListener {
             //noinspection MissingPermission
             location_manager.requestLocationUpdates("gps", 5000, 0, location_listener);
         }
-    }*/
+    }
 
 
     public void hae_saa(String lat, String longt) {
