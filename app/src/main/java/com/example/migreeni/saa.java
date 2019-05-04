@@ -1,16 +1,12 @@
 package com.example.migreeni;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,7 +36,6 @@ public class saa extends AppCompatActivity {
     private ImageView tv_ikoni;
     private RequestQueue mQueue;
     public String ikoniUrl = "", latitude, longtitude;
-    private Context context;
 
     private LocationManager location_manager;
     private LocationListener location_listener;
@@ -50,6 +45,7 @@ public class saa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
+        // Find the widgets of saa-layout using ids
         tv_kaupunki = (TextView) findViewById(R.id.kaupunki_textview);
         tv_ikoni = (ImageView) findViewById(R.id.saaikoni_imageview);
         tv_ilmanpaine = (TextView) findViewById(R.id.ilmanpaine_textview);
@@ -57,18 +53,22 @@ public class saa extends AppCompatActivity {
         tv_lampotila = (TextView) findViewById(R.id.lampotila_textview);
         tv_yksityiskohta = (TextView) findViewById(R.id.yksityiskohta_textview);
 
+        //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
         mQueue = Volley.newRequestQueue(this);
 
         location_manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         location_listener = new LocationListener() {
+
+            // gets called when the location is updated
             @Override
             public void onLocationChanged(Location location) {
                 latitude = String.valueOf(location.getLatitude());
                 longtitude = String.valueOf(location.getLongitude());
-                Log.d(TAG,"lat" + latitude);
-                Log.d(TAG,"long" + longtitude);
+                //Log.d(TAG,"lat" + latitude);
+                //Log.d(TAG,"long" + longtitude);
 
+                // Find the weather based on your coordinates
                 hae_saa(latitude, longtitude);
 
             }
@@ -83,62 +83,58 @@ public class saa extends AppCompatActivity {
 
             }
 
-
+            // If gps is setted off > open settings
             @Override
             public void onProviderDisabled(String provider) {
                 Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(asetukset);
             }
 
-
         };
 
-        lataa_paikka();
+        tarkista_luvat();
 
     }
 
-
+    /*// Stored the results from permissions
    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 10:
-                lataa_paikka();
-                break;
-            default:
-                break;
+        if (requestCode == 10) {
+            tarkista_luvat();
         }
-    }
+    }*/
 
 
-    public void lataa_paikka() {
-        // first check for permissions // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
+    public void tarkista_luvat() {
+        // first check for permissions
+        // this code won't execute IF permissions are not allowed
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.INTERNET}
             ,10);
-            }
-            return;
         } else {
-            //noinspection MissingPermission
+            // permissions ok
+            //Make a new location request when user moves 500m
             location_manager.requestLocationUpdates("gps", 0, 500, location_listener);
         }
     }
 
-
+    // Gets the weather info and shows the values in the view
     public void hae_saa(String lat, String longt) {
 
-        //String latitude = lat;
-        //String longtitude = longt;
-        Log.d(TAG,"latii" + lat);
-        Log.d(TAG,"longii" + longt);
+        //Log.d(TAG,"lat" + lat);       tested the coordinates
+        //Log.d(TAG,"long" + longt);
 
         String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + longt + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
 
+        //get the JSON-Object based on  your location, using Openweathermap API
         JsonObjectRequest haku = new JsonObjectRequest (Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
 
-            @Override
+            @Override //if we get the response, set the values from the API to the saa-layout
             public void onResponse(JSONObject response) {
 
                 try {
@@ -168,6 +164,7 @@ public class saa extends AppCompatActivity {
                 }
             }
 
+            // If there is no response, print an error-log
             }, new Response.ErrorListener()
             {
                 @Override
@@ -178,10 +175,13 @@ public class saa extends AppCompatActivity {
             }
         );
 
+        // Add the request to the RequestQueue.
         mQueue.add(haku);
 
     }
 
+
+    // Set the weather icon to the imageview, icon we get from the API
     public void setIkoni(String ikoniUrl) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()

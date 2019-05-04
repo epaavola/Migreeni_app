@@ -42,4 +42,10 @@
     <string name="kipumittari5">Sietämätön</string>
     <string name="clear_list_button">Poista merkinnät</string>
 
+    <string name="pros_merkki">%</string>
+    <string name="hpa_merkki">hpa</string>
+    <string name="ilmanpaine">Ilmanpaine</string>
+    <string name="kost_pros">Kosteusprosentti</string>
+
+
 </resources>

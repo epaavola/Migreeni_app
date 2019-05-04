@@ -8,6 +8,18 @@
 
 
     <TextView
+        android:id="@+id/pros_textview"
+        android:layout_width="53dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/pros_merkki"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hpa_textview" />
+
+    <TextView
         android:id="@+id/kaupunki_textview"
         android:layout_width="345dp"
         android:layout_height="77dp"
@@ -17,6 +29,7 @@
         android:layout_marginEnd="33dp"
         android:textColor="@color/colorAccent"
         android:textSize="50sp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,22 +56,20 @@
         android:layout_marginTop="65dp"
         android:layout_marginEnd="52dp"
         android:textSize="40sp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kaupunki_textview" />
 
     <TextView
         android:id="@+id/kosteus_textview"
-        android:layout_width="244dp"
-        android:layout_height="44dp"
+        android:layout_width="84dp"
+        android:layout_height="42dp"
         android:layout_below="@+id/yksityiskohta_textview"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="43dp"
+        android:textAlignment="center"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pros_textview"
         app:layout_constraintTop_toBottomOf="@+id/ilmanpaine_textview" />
 
     <TextView
@@ -67,25 +78,59 @@
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="84dp"
         android:textSize="30sp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saaikoni_imageview" />
 
     <TextView
         android:id="@+id/ilmanpaine_textview"
-        android:layout_width="245dp"
-        android:layout_height="41dp"
+        android:layout_width="82dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="84dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/hpa_textview"
+        app:layout_constraintTop_toBottomOf="@+id/yksityiskohta_textview" />
+
+    <TextView
+        android:id="@+id/hpa_textview"
+        android:layout_width="58dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/hpa_merkki"
+        android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yksityiskohta_textview" />
+
+    <TextView
+        android:id="@+id/ilmanpaine_text"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:text="@string/ilmanpaine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yksityiskohta_textview" />
+
+    <TextView
+        android:id="@+id/kosteus_text"
+        android:layout_width="244dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/kost_pros"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ilmanpaine_text" />
 
 </android.support.constraint.ConstraintLayout>
