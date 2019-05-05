@@ -14,24 +14,49 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String tag = "tag";
 
+    public long paiviaValissa(Date one, Date two){
+
+        // lasketaan päivämäärien välinen erotus, jaetaan tulos millisekunneilla/päivä
+        long erotus = ((one.getTime()-two.getTime())/86400000);
+        return Math.abs(erotus);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadData(); // Load data from Shared Preferences
+
+        Date tanaan = new Date();
+        Calendar kal = Calendar.getInstance();
+
+        //kal.set(haluttu päivämäärä); !!!
+        kal.set(2019, 4, 10);
+        Date merkintapaiva = kal.getTime();
+
+        MainActivity obj = new MainActivity();
+        long paivat = obj.paiviaValissa(tanaan, merkintapaiva);
+
+        Log.d(tag, "Päiviä välissä testi: " + paivat);
+
+        TextView tvPaivia = findViewById(R.id.viime_merkinta_arvo);
+        tvPaivia.setText(String.valueOf(paivat));
     }
 
     public void kalenteri_icon(View view) {
