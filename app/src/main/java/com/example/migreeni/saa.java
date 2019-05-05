@@ -6,7 +6,9 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,12 +48,12 @@ public class saa extends AppCompatActivity {
         setContentView(R.layout.activity_saa);
 
         // Find the widgets of saa-layout using ids
-        tv_kaupunki = (TextView) findViewById(R.id.kaupunki_textview);
-        tv_ikoni = (ImageView) findViewById(R.id.saaikoni_imageview);
-        tv_ilmanpaine = (TextView) findViewById(R.id.ilmanpaine_textview);
-        tv_kosteus = (TextView) findViewById(R.id.kosteus_textview);
-        tv_lampotila = (TextView) findViewById(R.id.lampotila_textview);
-        tv_yksityiskohta = (TextView) findViewById(R.id.yksityiskohta_textview);
+        tv_kaupunki = findViewById(R.id.kaupunki_textview);
+        tv_ikoni = findViewById(R.id.saaikoni_imageview);
+        tv_ilmanpaine = findViewById(R.id.ilmanpaine_textview);
+        tv_kosteus = findViewById(R.id.kosteus_textview);
+        tv_lampotila = findViewById(R.id.lampotila_textview);
+        tv_yksityiskohta = findViewById(R.id.yksityiskohta_textview);
 
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
         mQueue = Volley.newRequestQueue(this);
@@ -96,12 +98,12 @@ public class saa extends AppCompatActivity {
 
     }
 
-    /*// Stored the results from permissions
-   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    // Stored the results from permissions
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 10) {
             tarkista_luvat();
         }
-    }*/
+    }
 
 
     public void tarkista_luvat() {
@@ -111,11 +113,11 @@ public class saa extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.INTERNET}
-            ,10);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
+                        ,10);
+            }
+            return;
         } else {
             // permissions ok
             //Make a new location request when user moves 500m
