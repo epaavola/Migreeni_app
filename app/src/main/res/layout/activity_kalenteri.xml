@@ -12,13 +12,14 @@
         android:layout_width="216dp"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
-
         android:layout_marginBottom="8dp"
+
         android:gravity="center"
         android:text="@string/kalenteri_otsikko"
         android:textColor="#FFFFFF"
-
+        android:fontFamily="@font/raleway"
         android:textSize="24sp"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,14 +31,15 @@
         android:layout_height="31dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+
         android:gravity="center"
         android:text="@string/kalenteri_pvm"
-
+        android:fontFamily="@font/raleway"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +60,7 @@
         android:layout_height="wrap_content"
 
         android:background="@drawable/corner_rad"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -69,9 +72,9 @@
             android:id="@+id/kalenteri_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="8dp"
             android:layout_marginBottom="32dp"
+
             android:firstDayOfWeek="2"
 
             app:layout_constraintBottom_toBottomOf="parent"
