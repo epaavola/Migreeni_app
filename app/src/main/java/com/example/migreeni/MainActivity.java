@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void saa_icon(View view) {
-        Intent intent = new Intent(this, saa.class);
+        Intent intent = new Intent(this, koordinaatit.class);
         startActivity(intent);
     }
 

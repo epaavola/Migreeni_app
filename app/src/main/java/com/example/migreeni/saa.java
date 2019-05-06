@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -34,18 +35,22 @@ public class saa extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    private TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta;
+    public TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta;
     private ImageView tv_ikoni;
     private RequestQueue mQueue;
-    public String ikoniUrl = "", latitude, longtitude;
+    public String ikoniUrl = "";
 
-    private LocationManager location_manager;
-    private LocationListener location_listener;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
+
+        Bundle extras = getIntent().getExtras();
+        String lat = extras.getString("latitude");
+        String longt = extras.getString("longtitude");
+
+        //Log.d(TAG, "latitude: " + lat);
+        //Log.d(TAG, "longtitude: " + longt);
 
         // Find the widgets of saa-layout using ids
         tv_kaupunki = findViewById(R.id.kaupunki_textview);
@@ -58,77 +63,13 @@ public class saa extends AppCompatActivity {
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
         mQueue = Volley.newRequestQueue(this);
 
-        location_manager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        location_listener = new LocationListener() {
-
-            // gets called when the location is updated
-            @Override
-            public void onLocationChanged(Location location) {
-                latitude = String.valueOf(location.getLatitude());
-                longtitude = String.valueOf(location.getLongitude());
-                //Log.d(TAG,"lat" + latitude);
-                //Log.d(TAG,"long" + longtitude);
-
-                // Find the weather based on your coordinates
-                hae_saa(latitude, longtitude);
-
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            // If gps is setted off > open settings
-            @Override
-            public void onProviderDisabled(String provider) {
-                Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(asetukset);
-            }
-
-        };
-
-        tarkista_luvat();
-
-    }
-
-    // Stored the results from permissions
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 10) {
-            tarkista_luvat();
-        }
-    }
-
-
-    public void tarkista_luvat() {
-        // first check for permissions
-        // this code won't execute IF permissions are not allowed
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
-                        ,10);
-            }
-            return;
-        } else {
-            // permissions ok
-            //Make a new location request when user moves 500m
-            location_manager.requestLocationUpdates("gps", 0, 500, location_listener);
-        }
+        hae_saa(lat,longt);
     }
 
     // Gets the weather info and shows the values in the view
     public void hae_saa(String lat, String longt) {
 
-        //Log.d(TAG,"lat" + lat);       tested the coordinates
+        //Log.d(TAG,"lat" + lat);       //tested the coordinates
         //Log.d(TAG,"long" + longt);
 
         String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + longt + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
@@ -144,11 +85,11 @@ public class saa extends AppCompatActivity {
                     JSONArray array = response.getJSONArray("weather");
                     JSONObject object = array.getJSONObject(0);
 
-                    String lampo = String.valueOf(main_object.getDouble("temp"));
+                    String lampo = String.valueOf(main_object.getInt("temp"));
                     String kuvaus = object.getString("description");
                     String kaupunki = response.getString("name");
-                    String ipaine = String.valueOf(main_object.getDouble("pressure"));
-                    String kosteus = String.valueOf(main_object.getDouble("humidity"));
+                    String ipaine = String.valueOf(main_object.getInt("pressure"));
+                    String kosteus = String.valueOf(main_object.getInt("humidity"));
 
                     String ikoni = object.getString("icon");
                     ikoniUrl = "http://openweathermap.org/img/w/" + ikoni + ".png";
@@ -193,6 +134,5 @@ public class saa extends AppCompatActivity {
         Glide.with(this).load(ikoniUrl).apply(options).into(tv_ikoni);
 
     }
-
 
 }
