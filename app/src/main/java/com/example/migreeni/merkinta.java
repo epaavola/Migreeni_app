@@ -1,6 +1,7 @@
 package com.example.migreeni;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -114,6 +116,8 @@ public class merkinta extends AppCompatActivity {
         Merkinta_lista.getInstance().getMerkinnat().add(merkinta);
         saveData();
 
+        Toast.makeText(this,"Merkinät tallennettu",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MainActivity.class));
     }
     // Save list of entries to the shared preferences
     public void saveData() {

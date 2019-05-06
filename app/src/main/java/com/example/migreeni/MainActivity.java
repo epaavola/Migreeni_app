@@ -20,9 +20,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loadData(); // Load data from Shared Preferences
         loadPaivia();
+
+
 
     }
 
@@ -80,18 +86,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadPaivia(){
 
-        Date tanaan = new Date();
         Calendar kal = Calendar.getInstance();
-
-        //kal.set(haluttu päivämäärä); !!!
+        String paivamaara = "";
         kal.set(2019, 4, 10);
-        Date merkintapaiva = kal.getTime();
 
+        int index = Merkinta_lista.getInstance().getMerkinnat().size();
+        index--;
+        if(index >= 0){
+            paivamaara = Merkinta_lista.getInstance().getMerkinnat().get(index).getPaivamaara();
+        }
+        Date viime_merkinta_paiva = kal.getTime();
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            viime_merkinta_paiva = formatter.parse(paivamaara);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Date tanaan = new Date();
         MainActivity obj = new MainActivity();
-        long paivat = obj.paiviaValissa(tanaan, merkintapaiva);
-
-        Log.d(tag, "Päiviä välissä testi: " + paivat);
-
+        long paivat = obj.paiviaValissa(tanaan, viime_merkinta_paiva);
         TextView tvPaivia = findViewById(R.id.viime_merkinta_arvo);
         tvPaivia.setText(String.valueOf(paivat));
     }
