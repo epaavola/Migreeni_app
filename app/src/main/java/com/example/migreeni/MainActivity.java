@@ -45,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //loadData(); // Load data from Shared Preferences
+        loadData(); // Load data from Shared Preferences
         loadPaivia();
+
+
 
     }
 
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar kal = Calendar.getInstance();
         String paivamaara = "";
-        //kal.set(2019, 4, 10);
+        kal.set(2019, 4, 10);
 
         int index = Merkinta_lista.getInstance().getMerkinnat().size();
         index--;
