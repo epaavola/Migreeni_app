@@ -42,21 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadData(); // Load data from Shared Preferences
+        loadPaivia();
 
-        Date tanaan = new Date();
-        Calendar kal = Calendar.getInstance();
-
-        //kal.set(haluttu päivämäärä); !!!
-        kal.set(2019, 4, 10);
-        Date merkintapaiva = kal.getTime();
-
-        MainActivity obj = new MainActivity();
-        long paivat = obj.paiviaValissa(tanaan, merkintapaiva);
-
-        Log.d(tag, "Päiviä välissä testi: " + paivat);
-
-        TextView tvPaivia = findViewById(R.id.viime_merkinta_arvo);
-        tvPaivia.setText(String.valueOf(paivat));
     }
 
     public void kalenteri_icon(View view) {
@@ -91,7 +78,23 @@ public class MainActivity extends AppCompatActivity {
         Merkinta_lista.getInstance().setMerkinnat(listanen);
     }
 
+    public void loadPaivia(){
 
+        Date tanaan = new Date();
+        Calendar kal = Calendar.getInstance();
+
+        //kal.set(haluttu päivämäärä); !!!
+        kal.set(2019, 4, 10);
+        Date merkintapaiva = kal.getTime();
+
+        MainActivity obj = new MainActivity();
+        long paivat = obj.paiviaValissa(tanaan, merkintapaiva);
+
+        Log.d(tag, "Päiviä välissä testi: " + paivat);
+
+        TextView tvPaivia = findViewById(R.id.viime_merkinta_arvo);
+        tvPaivia.setText(String.valueOf(paivat));
+    }
 
 
 }
