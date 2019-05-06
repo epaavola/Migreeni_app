@@ -47,10 +47,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadData(); // Load data from Shared Preferences
+        //loadData(); // Load data from Shared Preferences
         loadPaivia();
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(tag, "onResume called");
+
+        paivita_ilmanpaine();
+    }
+
+    private void paivita_ilmanpaine() {
+        Bundle extra = getIntent().getExtras();
+        String ilmanpaine = null;
+        if (extra != null) {
+            ilmanpaine = extra.getString("ilmanpaine");
+            TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
+            ipaine_main.setText(ilmanpaine);
+
+        }
+        Log.d(tag, "ilma : " + ilmanpaine);
+    }
+
 
     public void kalenteri_icon(View view) {
         Intent intent = new Intent(this, kalenteri.class);

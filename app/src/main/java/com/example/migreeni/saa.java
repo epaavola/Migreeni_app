@@ -38,7 +38,7 @@ public class saa extends AppCompatActivity {
     public TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta;
     private ImageView tv_ikoni;
     private RequestQueue mQueue;
-    public String ikoniUrl = "";
+    public String ikoniUrl = "", ilmpaine;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,8 @@ public class saa extends AppCompatActivity {
         String lat = extras.getString("latitude");
         String longt = extras.getString("longtitude");
 
-        //Log.d(TAG, "latitude: " + lat);
-        //Log.d(TAG, "longtitude: " + longt);
+        Log.d(TAG, "latitude: " + lat);
+        Log.d(TAG, "longtitude: " + longt);
 
         // Find the widgets of saa-layout using ids
         tv_kaupunki = findViewById(R.id.kaupunki_textview);
@@ -100,6 +100,8 @@ public class saa extends AppCompatActivity {
                     tv_ilmanpaine.setText(ipaine);
                     tv_kosteus.setText(kosteus);
 
+                    ilmpaine = ipaine;
+
                     setIkoni(ikoniUrl);
 
                 } catch (JSONException e) {
@@ -132,6 +134,22 @@ public class saa extends AppCompatActivity {
                 .error(R.mipmap.ic_launcher_round);
 
         Glide.with(this).load(ikoniUrl).apply(options).into(tv_ikoni);
+
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        Log.d(TAG, "onPause called");
+        Intent nextActivity = new Intent(saa.this, MainActivity.class);
+        Bundle extra = new Bundle();
+        extra.putString("ilmanpaine", ilmpaine);
+        nextActivity.putExtras(extra);
+
+        Log.d(TAG, "ilm: " + ilmpaine);
+
+        startActivity(nextActivity);
 
     }
 
