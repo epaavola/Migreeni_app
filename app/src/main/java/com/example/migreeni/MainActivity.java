@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +33,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String tag = "tag";
+    public static final String tag = "tagaus";
 
     public long paiviaValissa(Date one, Date two){
 
@@ -47,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loadData(); // Load data from Shared Preferences
         loadPaivia();
-
-
 
     }
 
@@ -111,5 +111,19 @@ public class MainActivity extends AppCompatActivity {
         tvPaivia.setText(String.valueOf(paivat));
     }
 
+    public void pikaMerkinta(View view){
+        Date date = new Date();
+        DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        String tanaan = format1.format(date);
+
+        Date time = Calendar.getInstance().getTime();
+        DateFormat format2 = new SimpleDateFormat("HH:mm:ss");
+        String aika = format2.format(time);
+
+        Uusi_merkinta pika = new Uusi_merkinta(tanaan, aika, "","","");
+        Merkinta_lista.getInstance().getMerkinnat().add(pika);
+
+        Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();
+    }
 
 }
