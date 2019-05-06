@@ -12,7 +12,6 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 
-import java.util.List;
 
 public class vanhat_merkinnat extends AppCompatActivity {
 
@@ -41,7 +40,6 @@ public class vanhat_merkinnat extends AppCompatActivity {
                 startActivity(nextActivity);
             }
         });
-
     }
 
     public void poista_merkinnat(View view){
@@ -49,6 +47,7 @@ public class vanhat_merkinnat extends AppCompatActivity {
         lv.setAdapter(null);
         saveData();
     }
+
     public void saveData() {
         SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

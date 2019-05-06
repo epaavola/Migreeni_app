@@ -34,7 +34,8 @@ class time_picker implements View.OnFocusChangeListener, TimePickerDialog.OnTime
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // TODO Auto-generated method stub
-        this.editText.setText( hourOfDay + ":" + minute);
+        String aika = hourOfDay + ":" + minute;
+        this.editText.setText(aika);
     }
 
 }

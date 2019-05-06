@@ -13,9 +13,7 @@ class Merkinta_lista {
     private List<Uusi_merkinta> merkinnat;
 
     private Merkinta_lista() {
-
         merkinnat = new ArrayList<>();
-
     }
 
     public ArrayList<Uusi_merkinta> getMerkinnat(){

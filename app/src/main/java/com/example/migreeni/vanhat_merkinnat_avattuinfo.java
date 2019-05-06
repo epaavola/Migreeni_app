@@ -14,7 +14,6 @@ public class vanhat_merkinnat_avattuinfo extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         int position = b.getInt(vanhat_merkinnat.EXTRA, 0);
 
-
         String date = "Päivämäärä: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getPaivamaara();
         String time = "Aika: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getAika();
         String medic = "Otettu lääke: " + Merkinta_lista.getInstance().getMerkinnat().get(position).getLaake();

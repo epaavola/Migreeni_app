@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent1"
+    android:background="@drawable/gradient"
     tools:context=".vanhat_merkinnat_avattuinfo">
 
 
@@ -22,10 +22,12 @@
 
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway"
         android:gravity="center"
         android:text="@string/vanhat_merkinnat_otsikko"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,29 +41,33 @@
 
         android:layout_marginEnd="8dp"
 
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textView_medic"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <TextView
         android:id="@+id/textView_date"
         android:layout_width="220dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
 
         android:layout_marginTop="8dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway"
         android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textView_time"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView_medic"
@@ -71,11 +77,12 @@
 
         android:layout_marginEnd="8dp"
 
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textView_pain"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <TextView
@@ -87,10 +94,11 @@
         android:layout_marginEnd="8dp"
 
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <TextView
@@ -101,11 +109,12 @@
 
         android:layout_marginEnd="8dp"
 
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textView_extra"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <android.support.constraint.Guideline
@@ -127,6 +136,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.73" />
 
 </android.support.constraint.ConstraintLayout>

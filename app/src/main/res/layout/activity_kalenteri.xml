@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent1"
+    android:background="@drawable/gradient"
     tools:context=".kalenteri">
 
     <TextView
@@ -72,12 +72,14 @@
 
             android:layout_marginTop="8dp"
             android:layout_marginBottom="32dp"
+            android:firstDayOfWeek="2"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
             app:layout_constraintVertical_bias="0.19999999" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

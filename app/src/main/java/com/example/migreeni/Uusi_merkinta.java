@@ -3,11 +3,11 @@ package com.example.migreeni;
 public class Uusi_merkinta {
 
 
-    String paivamaara;
-    String aika;
-    String laake;
-    String kipu;
-    String lisatiedot;
+    private String paivamaara;
+    private String aika;
+    private String laake;
+    private String kipu;
+    private String lisatiedot;
 
     public Uusi_merkinta(String pvm, String aika, String laake, String kipu, String lisatiedot) {
         this.paivamaara = pvm;

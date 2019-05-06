@@ -36,7 +36,6 @@ public class merkinta extends AppCompatActivity {
         time_picker fromTime2 = new time_picker(editTextFromTime2, this);
     }
 
-
     public void tallenna_merkinta(View view){
         String laake = "Ei lääkitystä";
         String kipu = "Ei kipuja";
@@ -116,7 +115,7 @@ public class merkinta extends AppCompatActivity {
         Merkinta_lista.getInstance().getMerkinnat().add(merkinta);
         saveData();
 
-        Toast.makeText(this,"Merkinät tallennettu",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();
         startActivity(new Intent(this, MainActivity.class));
     }
     // Save list of entries to the shared preferences

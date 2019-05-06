@@ -47,5 +47,6 @@
     <string name="ilmanpaine">Ilmanpaine</string>
     <string name="kost_pros">Kosteusprosentti</string>
 
+    <string name="def_empty"> </string>
 
 </resources>
