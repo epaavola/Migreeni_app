@@ -118,10 +118,10 @@
         android:autofillHints="@android:string/autofill"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
-        android:hint="@android:string/autofill"
+        android:hint="@string/lisatietoja_placeholder"
         android:inputType="textPersonName"
-        android:text="@string/lisatietoja_placeholder"
         android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lisatietoja_otsikko" />
 
