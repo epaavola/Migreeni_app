@@ -1,6 +1,7 @@
 package com.example.migreeni;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -29,48 +30,64 @@ public class koordinaatit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
-        location_manager =(LocationManager) getSystemService(LOCATION_SERVICE);
+        location_manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         location_listener = new
 
-        LocationListener() {
+                LocationListener() {
 
-            // gets called when the location is updated
-            @Override
-            public void onLocationChanged (Location location){
-                latitude = String.valueOf(location.getLatitude());
-                longtitude = String.valueOf(location.getLongitude());
-                //Log.d(TAG,"lat" + latitude);
-                //Log.d(TAG,"long" + longtitude);
+                    // gets called when the location is updated
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        latitude = String.valueOf(location.getLatitude());
+                        longtitude = String.valueOf(location.getLongitude());
+                        //Log.d(TAG,"lat" + latitude);
+                        //Log.d(TAG,"long" + longtitude);
 
-                // Find the weather based on your coordinates
-                hae_saatiedot(latitude, longtitude);
+                        // Find the weather based on your coordinates
+                        hae_saatiedot(latitude, longtitude);
 
-            }
+                    }
 
-            @Override
-            public void onStatusChanged (String s,int i, Bundle bundle){
+                    @Override
+                    public void onStatusChanged(String s, int i, Bundle bundle) {
 
-            }
+                    }
 
-            @Override
-            public void onProviderEnabled (String s){
+                    @Override
+                    public void onProviderEnabled(String s) {
 
-            }
+                    }
 
-            // If gps is setted off > open settings
-            @Override
-            public void onProviderDisabled (String provider){
-                Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(asetukset);
-            }
+                    // If gps is setted off > open settings
+                    @Override
+                    public void onProviderDisabled(String provider) {
+                        Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(asetukset);
+                    }
 
-        };
+                };
 
-        tarkista_luvat();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                                != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+
+                location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);
+
+        //tarkista_luvat();
     }
 
-    public void tarkista_luvat() {
+    /*public void tarkista_luvat() {
         // first check for permissions
         // this code won't execute IF permissions are not allowed
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -85,7 +102,7 @@ public class koordinaatit extends AppCompatActivity {
         } else {
             // permissions ok
             //Make a new location request when user moves 500m
-            location_manager.requestLocationUpdates("gps", 0, 500, location_listener);
+            location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);
         }
     }
 
@@ -94,7 +111,7 @@ public class koordinaatit extends AppCompatActivity {
         if (requestCode == 10) {
             tarkista_luvat();
         }
-    }
+    }*/
 
     public void hae_saatiedot(String lati, String longti) {
         Intent nextActivity = new Intent(koordinaatit.this, saa.class);
