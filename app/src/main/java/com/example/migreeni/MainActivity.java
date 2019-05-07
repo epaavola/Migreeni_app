@@ -35,6 +35,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     public static final String tag = "tagaus";
+    public static final String TAG = "Ilmanpaine";
 
     public long paiviaValissa(Date one, Date two){
 
@@ -66,20 +67,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void paivita_ilmanpaine() {
 
+        SharedPreferences ilmanpaine_psharedpreferences = getSharedPreferences("ilmanpaine_sharedpreferences", MODE_PRIVATE);
+        String ilpaine = ilmanpaine_psharedpreferences.getString("ilmanpaine", "");
+        Log.d(TAG, ilpaine);
 
-        Bundle extra = getIntent().getExtras();
-        if (extra != null) {
-            String ilmanpaine;
-            ilmanpaine = extra.getString("ilmanpaine");
+        if (ilpaine != null) {
             TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
-            ipaine_main.setText(ilmanpaine);
-            Log.d(tag, ilmanpaine);
-
+            ipaine_main.setText(ilpaine);
+            Log.d(TAG, ilpaine);
 
             SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
             SharedPreferences.Editor ip_editor = ipsharedpreferences.edit();
 
-            ip_editor.putString("ipaine", ilmanpaine);
+            ip_editor.putString("ipaine", ilpaine);
             ip_editor.commit();
         }
         else {

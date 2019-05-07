@@ -43,7 +43,6 @@ public class koordinaatit extends AppCompatActivity {
         client = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            Log.d(TAG,"hyvaks");
             return;
         }
 

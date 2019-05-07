@@ -2,6 +2,7 @@ package com.example.migreeni;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -107,6 +108,12 @@ public class saa extends AppCompatActivity {
 
                     ilmpaine = ipaine;
 
+                    SharedPreferences ilmanpaine_sharedpreferences = getSharedPreferences("ilmanpaine_sharedpreferences", MODE_PRIVATE);
+                    SharedPreferences.Editor ilmanpaine_editor = ilmanpaine_sharedpreferences.edit();
+
+                    ilmanpaine_editor.putString("ilmanpaine", ilmpaine);
+                    ilmanpaine_editor.commit();
+
                     int id = object.getInt("id");
                     long sunri = sys.getLong("sunrise") * 1000;
                     long sunse = sys.getLong("sunset") * 1000;
@@ -134,7 +141,7 @@ public class saa extends AppCompatActivity {
 
     }
 
-    @Override
+    /*@Override
     public void onPause()
     {
         super.onPause();
@@ -148,7 +155,7 @@ public class saa extends AppCompatActivity {
 
         startActivity(nextActivity);
 
-    }
+    }*/
 
     public static String setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
