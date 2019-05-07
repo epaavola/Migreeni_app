@@ -27,7 +27,7 @@ public class koordinaatit extends AppCompatActivity {
 
     private static final String TAG = "Koordinaatit";
 
-    public String latitude, longtitude;
+    //public String latitude, longtitude;
 
     private FusedLocationProviderClient client;
 
@@ -50,14 +50,15 @@ public class koordinaatit extends AppCompatActivity {
         client.getLastLocation().addOnSuccessListener(koordinaatit.this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                Log.d(TAG,"locaaaa");
                 if (location != null) {
-                    String sijainti = location.toString();
-                    double latitude = location.getLatitude();
-                    double longitude = location.getLongitude();
+
+                    String  latitude = String.valueOf(location.getLatitude());
+                    String longitude = String.valueOf(location.getLongitude());
 
                     Log.d(TAG,"lat: "+ latitude);
                     Log.d(TAG, "long " + longitude);
+
+                    hae_saatiedot(latitude, longitude);
                 }
 
             }
@@ -119,7 +120,6 @@ public class koordinaatit extends AppCompatActivity {
     }
 
     private void requestPermission() {
-        Log.d(TAG, "permiss");
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION},1);
     }
 
