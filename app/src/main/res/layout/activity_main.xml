@@ -12,40 +12,43 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/image_meta"
-
         android:onClick="kalenteri_icon"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/saa_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
         app:srcCompat="@drawable/iconscal02" />
 
     <ImageView
         android:id="@+id/saa_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="32dp"
 
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:contentDescription="@string/image_meta"
         android:onClick="saa_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/uusi_merkinta_icon"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/kalenteri_icon"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
         app:srcCompat="@drawable/iconsmain03" />
 
     <ImageView
         android:id="@+id/vikamerkinta_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginEnd="32dp"
 
+        android:layout_marginEnd="8dp"
         android:contentDescription="@string/image_meta"
         android:onClick="viime_merkinta_icon"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/uusi_merkinta_icon"
         app:layout_constraintTop_toBottomOf="@+id/saa_icon"
         app:srcCompat="@drawable/iconsmain04" />
@@ -55,12 +58,11 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
 
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:contentDescription="@string/image_meta"
         android:onClick="merkinta_icon"
         app:layout_constraintEnd_toStartOf="@+id/vikamerkinta_icon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
         app:layout_constraintTop_toBottomOf="@+id/kalenteri_icon"
         app:srcCompat="@drawable/iconsmain05" />
 
@@ -137,5 +139,35 @@
         app:layout_constraintStart_toEndOf="@+id/ilmanpaine_main"
         app:layout_constraintTop_toTopOf="@+id/saa_icon"
         app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="84dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="46dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="47dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_end="46dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="401dp" />
 
 </android.support.constraint.ConstraintLayout>
