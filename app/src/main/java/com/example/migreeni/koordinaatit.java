@@ -16,6 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
 
 public class koordinaatit extends AppCompatActivity {
 
@@ -23,14 +29,42 @@ public class koordinaatit extends AppCompatActivity {
 
     public String latitude, longtitude;
 
+    private FusedLocationProviderClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
-        LocationManager location_manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        requestPermission();
 
-        LocationListener location_listener = new
+        //LocationManager location_manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        client = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            Log.d(TAG,"hyvaks");
+            return;
+        }
+
+        client.getLastLocation().addOnSuccessListener(koordinaatit.this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                Log.d(TAG,"locaaaa");
+                if (location != null) {
+                    String sijainti = location.toString();
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+
+                    Log.d(TAG,"lat: "+ latitude);
+                    Log.d(TAG, "long " + longitude);
+                }
+
+            }
+        });
+
+
+        /*LocationListener location_listener = new
 
                 LocationListener() {
 
@@ -80,8 +114,13 @@ public class koordinaatit extends AppCompatActivity {
                     return;
                 }
 
-                location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);
+                location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);*/
 
+    }
+
+    private void requestPermission() {
+        Log.d(TAG, "permiss");
+        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION},1);
     }
 
 
