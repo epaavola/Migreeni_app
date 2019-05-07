@@ -65,16 +65,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <TextView
         android:id="@+id/saaikoni_imageview"
-        android:layout_width="132dp"
-        android:layout_height="103dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="60dp"
 
-        android:contentDescription="@string/def_empty"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="90sp"
 

@@ -1,5 +1,6 @@
 package com.example.migreeni;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -50,26 +51,50 @@ public class MainActivity extends AppCompatActivity {
         //loadData(); // Load data from Shared Preferences
         loadPaivia();
 
+        hae_vanhaip();
+
     }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
-        Log.d(tag, "onResume called");
+        Log.d(tag, "onresume called");
 
         paivita_ilmanpaine();
     }
 
     private void paivita_ilmanpaine() {
+
+
         Bundle extra = getIntent().getExtras();
-        String ilmanpaine = null;
         if (extra != null) {
+            String ilmanpaine;
             ilmanpaine = extra.getString("ilmanpaine");
             TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
             ipaine_main.setText(ilmanpaine);
+            Log.d(tag, ilmanpaine);
 
+
+            SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
+            SharedPreferences.Editor ip_editor = ipsharedpreferences.edit();
+
+            ip_editor.putString("ipaine", ilmanpaine);
+            ip_editor.commit();
         }
-        Log.d(tag, "ilma : " + ilmanpaine);
+        else {
+            hae_vanhaip();
+        }
+
+    }
+
+    private void hae_vanhaip() {
+
+        SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
+        String ipaine = ipsharedpreferences.getString("ipaine", "");
+
+        TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
+        ipaine_main.setText(ipaine);
     }
 
 

@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+
 public class koordinaatit extends AppCompatActivity {
 
     private static final String TAG = "Koordinaatit";
@@ -30,7 +31,7 @@ public class koordinaatit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
-        location_manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        location_manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         location_listener = new
 
@@ -46,7 +47,6 @@ public class koordinaatit extends AppCompatActivity {
 
                         // Find the weather based on your coordinates
                         hae_saatiedot(latitude, longtitude);
-
                     }
 
                     @Override
@@ -68,40 +68,20 @@ public class koordinaatit extends AppCompatActivity {
 
                 };
 
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                                != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-
-                location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);
-
-        //tarkista_luvat();
+        tarkista_luvat();
     }
 
-    /*public void tarkista_luvat() {
+    public void tarkista_luvat() {
         // first check for permissions
         // this code won't execute IF permissions are not allowed
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
-                        ,10);
-            }
-            return;
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET}
+                    ,10);
         } else {
             // permissions ok
-            //Make a new location request when user moves 500m
             location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);
         }
     }
@@ -111,7 +91,7 @@ public class koordinaatit extends AppCompatActivity {
         if (requestCode == 10) {
             tarkista_luvat();
         }
-    }*/
+    }
 
     public void hae_saatiedot(String lati, String longti) {
         Intent nextActivity = new Intent(koordinaatit.this, saa.class);
@@ -122,5 +102,5 @@ public class koordinaatit extends AppCompatActivity {
 
         startActivity(nextActivity);
     }
-}
 
+}
