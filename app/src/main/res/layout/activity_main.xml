@@ -11,13 +11,14 @@
         android:id="@+id/kalenteri_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="148dp"
 
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="100dp"
         android:contentDescription="@string/image_meta"
+
         android:onClick="kalenteri_icon"
         android:scaleType="fitCenter"
-
+        app:layout_constraintEnd_toStartOf="@+id/saa_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/iconscal02" />
@@ -26,15 +27,13 @@
         android:id="@+id/saa_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="32dp"
+
         android:contentDescription="@string/image_meta"
         android:onClick="saa_icon"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/kalenteri_icon"
+        app:layout_constraintStart_toEndOf="@+id/uusi_merkinta_icon"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/iconsmain03" />
 
@@ -42,29 +41,27 @@
         android:id="@+id/vikamerkinta_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
+
         android:contentDescription="@string/image_meta"
         android:onClick="viime_merkinta_icon"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/uusi_merkinta_icon"
-        app:layout_constraintTop_toTopOf="@+id/saa_icon"
+        app:layout_constraintStart_toEndOf="@+id/uusi_merkinta_icon"
+        app:layout_constraintTop_toBottomOf="@+id/saa_icon"
         app:srcCompat="@drawable/iconsmain04" />
 
     <ImageView
         android:id="@+id/uusi_merkinta_icon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="150dp"
+
+        android:layout_marginStart="32dp"
         android:contentDescription="@string/image_meta"
         android:onClick="merkinta_icon"
-
+        app:layout_constraintEnd_toStartOf="@+id/vikamerkinta_icon"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/kalenteri_icon"
+        app:layout_constraintTop_toBottomOf="@+id/kalenteri_icon"
         app:srcCompat="@drawable/iconsmain05" />
 
     <TextView
@@ -77,11 +74,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
 
+        android:fontFamily="@font/raleway"
         android:gravity="center"
         android:text="@string/viime_merkinta_def_arvo"
         android:textColor="#90FFFFFF"
         android:textSize="26sp"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBottom_toBottomOf="@+id/vikamerkinta_icon"
         app:layout_constraintEnd_toEndOf="@+id/vikamerkinta_icon"
@@ -128,11 +125,11 @@
         android:layout_marginEnd="54dp"
         android:layout_marginBottom="55dp"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/hpa_merkki"
         android:textAlignment="center"
         android:textColor="#90FFFFFF"
         android:textSize="24sp"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBottom_toTopOf="@+id/vikamerkinta_icon"
         app:layout_constraintEnd_toEndOf="parent"

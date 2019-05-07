@@ -14,11 +14,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
 
+        android:fontFamily="@font/raleway"
         android:gravity="center"
         android:text="@string/merkinta_otsikko"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,8 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="96dp"
 
-        android:text="@string/pvm_otsikko"
         android:fontFamily="@font/raleway"
+        android:text="@string/pvm_otsikko"
         android:textColor="#FFFFFF"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
 
-        android:text="@string/aika_otsikko"
         android:fontFamily="@font/raleway"
+        android:text="@string/aika_otsikko"
         android:textColor="#FFFFFF"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/pvm_otiskko"
@@ -61,8 +61,8 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
 
-        android:text="@string/laakkeet_otsikko"
         android:fontFamily="@font/raleway"
+        android:text="@string/laakkeet_otsikko"
         android:textColor="#FFFFFF"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +75,8 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="32dp"
 
-        android:text="@string/kipu_otsikko"
         android:fontFamily="@font/raleway"
+        android:text="@string/kipu_otsikko"
         android:textColor="#FFFFFF"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +89,8 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="42dp"
 
-        android:text="@string/Lisatietoja_otsikko"
         android:fontFamily="@font/raleway"
+        android:text="@string/Lisatietoja_otsikko"
         android:textColor="#FFFFFF"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -100,16 +100,18 @@
         android:id="@+id/tallenna_merkinta"
         android:layout_width="99dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginTop="24dp"
 
+        android:layout_marginBottom="24dp"
         android:background="@drawable/corner_rad"
         android:fontFamily="@font/raleway"
         android:onClick="tallenna_merkinta"
-        android:text="@string/tallenna_merkintä"
 
+        android:text="@string/tallenna_merkintä"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_lisatietoja" />
 
     <EditText
         android:id="@+id/pick_date"
@@ -119,18 +121,18 @@
         android:layout_marginTop="20dp"
 
         android:autofillHints="@android:string/autofill"
-        android:backgroundTint="#040F3C"
+        android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:focusable="false"
+        android:fontFamily="@font/raleway"
         android:hint="@android:string/autofill"
         android:inputType="date"
-        android:outlineSpotShadowColor="#000000"
 
+        android:outlineSpotShadowColor="#000000"
         android:text="@string/päivämäärä_placehold"
         android:textColor="#FFFFFF"
         android:textColorHint="#000000"
         android:textSize="24sp"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/pvm_otiskko" />
@@ -139,22 +141,22 @@
         android:id="@+id/set_lisatietoja"
         android:layout_width="350dp"
         android:layout_height="52dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="23dp"
+        android:layout_marginEnd="24dp"
 
         android:autofillHints="@android:string/autofill"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
+        android:fontFamily="@font/raleway"
         android:hint="@string/lisatietoja_placeholder"
-        android:inputType="textPersonName"
 
+        android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lisatietoja_otsikko" />
 
@@ -165,16 +167,16 @@
         android:layout_marginStart="1dp"
 
         android:autofillHints="@android:string/autofill"
-        android:backgroundTint="#040F3C"
+        android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:focusable="auto"
+        android:fontFamily="@font/raleway"
         android:hint="@android:string/autofill"
-        android:inputType="time"
 
+        android:inputType="time"
         android:text="@string/time_picker"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/time_alku"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
@@ -188,7 +190,7 @@
         android:layout_marginStart="1dp"
 
         android:autofillHints="@android:string/autofill"
-        android:backgroundTint="#040F3C"
+        android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:focusable="auto"
         android:fontFamily="@font/raleway"
@@ -224,9 +226,9 @@
         android:layout_marginTop="16dp"
 
         android:buttonTint="#FFFFFF"
+        android:fontFamily="@font/raleway"
         android:text="@string/Ibuprofeeni"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintEnd_toStartOf="@+id/parasetamoli"
         app:layout_constraintStart_toStartOf="parent"
@@ -239,9 +241,9 @@
         android:layout_marginEnd="1dp"
         android:buttonTint="#FFFFFF"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/Parasetamoli"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/ibuprofeeni"
         app:layout_constraintEnd_toStartOf="@+id/tasmalaake"
@@ -254,9 +256,9 @@
         android:layout_marginEnd="29dp"
         android:buttonTint="#FFFFFF"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/Täsmälääke"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/parasetamoli"
         app:layout_constraintEnd_toEndOf="parent"
@@ -267,9 +269,9 @@
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="362dp"
         android:layout_height="36dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="24dp"
 
         android:backgroundTint="#FFFFFF"
         android:foregroundTint="#FFFFFF"
@@ -286,7 +288,7 @@
         android:tickMarkTint="#FFFFFF"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kipu_otsikko" />
 
@@ -294,12 +296,12 @@
         android:id="@+id/kipumittari1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/kipumittari1"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/kipumittari" />
@@ -310,9 +312,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/kipumittari2"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/kipumittari1"
         app:layout_constraintStart_toEndOf="@+id/kipumittari1" />
@@ -323,9 +325,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/kipumittari3"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/kipumittari2"
         app:layout_constraintStart_toEndOf="@+id/kipumittari2" />
@@ -336,9 +338,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/kipumittari4"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/kipumittari3"
         app:layout_constraintStart_toEndOf="@+id/kipumittari3" />
@@ -350,9 +352,9 @@
         android:layout_marginStart="9dp"
         android:layout_marginEnd="8dp"
 
+        android:fontFamily="@font/raleway"
         android:text="@string/kipumittari5"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/raleway"
 
         app:layout_constraintBaseline_toBaselineOf="@+id/kipumittari4"
         app:layout_constraintEnd_toEndOf="parent"
