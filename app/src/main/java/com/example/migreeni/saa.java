@@ -55,6 +55,7 @@ public class saa extends AppCompatActivity {
     }
 
     public void haetaan_saaobjektit(String lat, String longi) {
+        setContentView(R.layout.activity_saa);
 
         /*Bundle extras = getIntent().getExtras();
         String lat = extras.getString("latitude");
@@ -86,6 +87,7 @@ public class saa extends AppCompatActivity {
 
     // Gets the weather info and shows the values in the view
     public void hae_saa(String lat, String longt) {
+        setContentView(R.layout.activity_saa);
 
         final TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
         RequestQueue mQueue;
