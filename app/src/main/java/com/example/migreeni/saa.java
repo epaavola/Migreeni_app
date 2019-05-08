@@ -43,7 +43,7 @@ public class saa extends AppCompatActivity {
     public TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
     public RequestQueue mQueue;
     public String ilmpaine;
-    Typeface weatherFont;
+    public Typeface weatherFont;
 
     public saa(){
 
