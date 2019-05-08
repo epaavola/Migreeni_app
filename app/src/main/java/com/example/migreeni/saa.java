@@ -76,7 +76,7 @@ public class saa extends AppCompatActivity {
         tv_saaikoni.setTypeface(weatherFont);
 
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
-        mQueue = Volley.newRequestQueue(this);
+        //mQueue = Volley.newRequestQueue(this);
 
         hae_saa(lat,longi);
     }
@@ -87,6 +87,8 @@ public class saa extends AppCompatActivity {
         Log.d(TAG, "latitude: " + lat);
         Log.d(TAG, "longtitude: " + longt);
 
+        //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
+        mQueue = Volley.newRequestQueue(this);
 
         String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + longt + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
 
@@ -115,6 +117,9 @@ public class saa extends AppCompatActivity {
                     tv_kosteus.setText(kosteus);
 
                     ilmpaine = ipaine;
+
+                    Log.d(TAG, "paine: " +ilmpaine);
+                    Log.d(TAG, "lampo :" + lampo);
 
                     SharedPreferences ilmanpaine_sharedpreferences = getSharedPreferences("ilmanpaine_sharedpreferences", MODE_PRIVATE);
                     SharedPreferences.Editor ilmanpaine_editor = ilmanpaine_sharedpreferences.edit();
