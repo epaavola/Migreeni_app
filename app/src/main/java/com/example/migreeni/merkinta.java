@@ -20,10 +20,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
- * Merkinta luokka ja merkinta activity toteuttaa *Lisää Uusi Merkintä' -toiminnon.
- * Merkinta luokan päätehtävä on poimia käyttäjän syöttämät tiedot, vertailla arvoja tarvittaessa
- * ja tallentaa tiedot Merkinta_lista singletonissa sijaitsevaan arraylistiin Merkintä olioina.
- * Tallennus suoritetaan, kun käyttäjä painaa Merkinta activityssä olevaa 'tallenna' painiketta.
+ * Merkinta class and Merkinta activity creates the 'Lisää Uusi Merkintä' functionality.
+ * Main function of the Merkinta class is to pick the all the data user fills to the form and
+ * then save that data as an object to the arraylist located in 'Merkinta_lista' singleton.
+ * Save is triggered when the user clicks the 'tallenna' button in Merkinta activity.
  */
 public class merkinta extends AppCompatActivity {
 
@@ -41,7 +41,11 @@ public class merkinta extends AppCompatActivity {
         time_picker fromTime1 = new time_picker(editTextFromTime1, this);
         time_picker fromTime2 = new time_picker(editTextFromTime2, this);
     }
-
+    /**
+     * Tallenna merkinta method saves all the user inputs from different EditTexts and checkboxes and SeekBar
+     * We use PVM_picker and time_picker classes to create visual calendar and clock view for the user.
+     *
+     */
     public void tallenna_merkinta(View view){
         String laake = "Ei lääkitystä";
         String kipu = "Ei kipuja";
@@ -122,7 +126,7 @@ public class merkinta extends AppCompatActivity {
         saveData();
 
         Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
     // Save list of entries to the shared preferences
     public void saveData() {
