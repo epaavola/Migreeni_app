@@ -54,15 +54,15 @@ public class saa extends AppCompatActivity {
         setContentView(R.layout.activity_saa);
     }
 
-    public void haetaan_saaobjektit() {
+    public void haetaan_saaobjektit(String lat, String longi) {
 
         /*Bundle extras = getIntent().getExtras();
         String lat = extras.getString("latitude");
         String longt = extras.getString("longtitude");*/
 
-        SharedPreferences koordinaatit_sharespreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
-        String lat = koordinaatit_sharespreferences.getString("latitude", "");
-        String longi = koordinaatit_sharespreferences.getString("longitude", "");
+        //SharedPreferences koordinaatit_sharespreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
+        //String lat = koordinaatit_sharespreferences.getString("latitude", "");
+        //String longi = koordinaatit_sharespreferences.getString("longitude", "");
 
         Log.d(TAG, "latitude1: " + lat);
         Log.d(TAG, "longitude1: " + longi);

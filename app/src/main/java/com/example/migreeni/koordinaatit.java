@@ -136,13 +136,13 @@ public class koordinaatit extends AppCompatActivity {
         saa saahaku = new saa();
 
 
-        SharedPreferences koordinaatit_sharedpreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
+        /*SharedPreferences koordinaatit_sharedpreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
         SharedPreferences.Editor koordinaatit_editor = koordinaatit_sharedpreferences.edit();
 
         koordinaatit_editor.putString("latitude", lati);
         koordinaatit_editor.putString("longitude", longi);
-        koordinaatit_editor.commit();
+        koordinaatit_editor.commit();*/
 
-        saahaku.haetaan_saaobjektit();
+        saahaku.haetaan_saaobjektit(lati,longi);
     }
 }
