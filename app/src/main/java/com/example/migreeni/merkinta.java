@@ -26,6 +26,8 @@ import java.util.ArrayList;
  * Save is triggered when the user clicks the 'tallenna' button in Merkinta activity.
  */
 public class merkinta extends AppCompatActivity {
+    SharedPreferences sharedPref;
+    public static final String mypreference = "shared preferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,29 +47,37 @@ public class merkinta extends AppCompatActivity {
      * Tallenna merkinta method saves all the user inputs from different EditTexts and checkboxes and SeekBar
      * We use PVM_picker and time_picker classes to create visual calendar and clock view for the user.
      *
+     * Pick the start time of attack
+     * Pick the end time of attack
+     * Unify the start and end time
+     * Get the medicine info from the checkboxes and give the right verbal output
+     * Get the value from 'pain meter' and give verbal value for each level
+     * Create new 'Uusi Merkinta' object of migraine attack with the values from user input ( Date, time, medicine, pain, info)
+     * Add the note object to the list so we can easily access data and also hash it to the shared preference
+     * @param view
      */
     public void tallenna_merkinta(View view){
         String laake = "Ei lääkitystä";
         String kipu = "Ei kipuja";
         String lisatiedot = "Ei lisätietoja";
 
-        // Pick the date user has entered. PVM_picker creates the calendar view for user.
+        //
         final EditText text =  findViewById(R.id.pick_date);
         String pvm = text.getText().toString();
 
-        // Pick the start time of attack
+        //
         final EditText text2 =  findViewById(R.id.time_alku);
         String time_alku = text2.getText().toString();
 
-        // Pick the end time of attack
+        //
         final EditText text3 =  findViewById(R.id.time_loppu);
         String time_loppu = text3.getText().toString();
 
-        // Unify the start and end time
+        //
         String aika = time_alku + " - " + time_loppu;
 
 
-        // Get the medicine info from the checkboxes and give the right verbal output
+        //
         boolean laake1 = ((CheckBox) findViewById(R.id.ibuprofeeni)).isChecked();
         boolean laake2 = ((CheckBox) findViewById(R.id.parasetamoli)).isChecked();
         boolean laake3 = ((CheckBox) findViewById(R.id.tasmalaake)).isChecked();
@@ -94,7 +104,7 @@ public class merkinta extends AppCompatActivity {
             laake = "Ibuprofeeni, Täsmälääke";
         }
 
-        // Get the value from 'pain meter' and give verbal value for each level
+        //
         SeekBar seek = findViewById(R.id.kipumittari);
         int seekValue = seek.getProgress();
 
@@ -118,23 +128,38 @@ public class merkinta extends AppCompatActivity {
         EditText edit = findViewById(R.id.set_lisatietoja);
         lisatiedot = edit.getText().toString();
 
-        // Create new note object of migraine attack with the values from user input ( Date, time, medicine, pain, info)
+
         Uusi_merkinta merkinta = new Uusi_merkinta(pvm,aika,laake,kipu,lisatiedot);
 
-        // Add the note object to the list so we can easily access data and also hash it
+
         Merkinta_lista.getInstance().getMerkinnat().add(merkinta);
         saveData();
 
         Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();
         finish();
     }
-    // Save list of entries to the shared preferences
+
+    /** Save list of Uusi_Merkinta objects to the shared preferences
+     *
+     */
     public void saveData() {
-        SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
-        editor.putString("list", json);
-        editor.apply();
+        if(Merkinta_lista.getInstance().getMerkinnat().get(0).getPaivamaara().equals("Esimerkki"))
+        {
+            Log.d("MSG","kärsh it");
+            Merkinta_lista.getInstance().getMerkinnat().remove(0);
+            sharedPref = getApplicationContext().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+            editor.putString("list", json);
+            editor.apply();
+        }else {
+            sharedPref = getApplicationContext().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+            editor.putString("list", json);
+            editor.commit();
+        }
     }
 }

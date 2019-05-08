@@ -11,7 +11,9 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 
-
+/**
+ * Vanhat_merkinnat class and activity shows the old migraine note entries in a listview
+ */
 public class vanhat_merkinnat extends AppCompatActivity {
 
     public static final String EXTRA = "";

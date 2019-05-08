@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+/**
+ * Kalenteri class and activity shows the calendar view for the user
+ */
 public class kalenteri extends AppCompatActivity {
 
     CalendarView kalenteri;

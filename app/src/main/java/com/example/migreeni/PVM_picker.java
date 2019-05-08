@@ -10,6 +10,10 @@ import android.widget.EditText;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+/**
+ * PVM_picker is used to display the calendar view for the user when picking the date for the migraine attack
+ * Found the idea and code from https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext
+ */
 public class PVM_picker  implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
     EditText _editText;
     private int _day;
@@ -43,7 +47,9 @@ public class PVM_picker  implements View.OnClickListener, DatePickerDialog.OnDat
 
     }
 
-    // updates the date in the birth date EditText
+    /** updates the date in the date picker EditText
+     *
+     */
     private void updateDisplay() {
 
         _editText.setText(new StringBuilder()

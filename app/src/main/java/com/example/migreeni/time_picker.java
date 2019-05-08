@@ -7,7 +7,10 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
-
+/**
+ * time_picker is used to display the clock view for the user when picking the start and end time for the migraine attack
+ * Found the idea and code from https://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext
+ */
 class time_picker implements View.OnFocusChangeListener, TimePickerDialog.OnTimeSetListener {
 
     private EditText editText;
@@ -23,7 +26,6 @@ class time_picker implements View.OnFocusChangeListener, TimePickerDialog.OnTime
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-        // TODO Auto-generated method stub
         if(hasFocus){
             int hour = myCalendar.get(Calendar.HOUR_OF_DAY);
             int minute = myCalendar.get(Calendar.MINUTE);
@@ -33,7 +35,6 @@ class time_picker implements View.OnFocusChangeListener, TimePickerDialog.OnTime
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        // TODO Auto-generated method stub
         String aika = hourOfDay + ":" + minute;
         this.editText.setText(aika);
     }

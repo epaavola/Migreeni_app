@@ -1,12 +1,21 @@
 package com.example.migreeni;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.preference.PreferenceManager;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,27 +23,35 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
-
+/**
+ * MainActivity
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String tag = "tagaus";
     public static final String TAG = "Ilmanpaine";
+    SharedPreferences sharedPref;
+    public static final String mypreference = "shared preferences";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //loadData(); // Load data from Shared Preferences
+        loadData(); // Load data from Shared Preferences
         lataaPaiviaValissa();
 
         paivita_ilmanpaine();
+
     }
 
     @Override
@@ -75,68 +92,82 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Kalenteri_icon method opens the kalenteri activity when clicked
+     * @param view
+     */
     public void kalenteri_icon(View view) {
         Intent intent = new Intent(this, kalenteri.class);
         startActivity(intent);
     }
-
+    /**
+     * Saa_icon method opens the saa activity when clicked
+     * @param view
+     */
     public void saa_icon(View view) {
         Intent intent = new Intent(this, koordinaatit.class);
         startActivity(intent);
     }
-
+    /**
+     * Merkinta_icon method opens the Merkinta activity when clicked
+     * @param view
+     */
     public void merkinta_icon(View view) {
         Intent intent = new Intent(this, merkinta.class);
         startActivity(intent);
     }
-
+    /**
+     * Viime_merkinta_icon method opens the vanhat_nerkinnat activity when clicked
+     * @param view
+     */
     public void viime_merkinta_icon(View view) {
         Intent intent = new Intent(this, vanhat_merkinnat.class);
         startActivity(intent);
     }
 
+    /**
+     * Loaddata method loads the saved data from shared preferences
+     * Our data is saved as objects in Arraylist
+     */
     // Load list of entries from shared preferences
     public void loadData() {
-       SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
-            Gson gson = new Gson();
-            String json = sharedPref.getString("list", null);
-            Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
-            }.getType();
-            ArrayList listanen;
-            listanen = gson.fromJson(json, type);
-            if(listanen.isEmpty()){
-                Log.d("MSG","Ei vanhoja merkintöjä");
-                Uusi_merkinta temp = new Uusi_merkinta("Esimerkki","Kohtauksen alkamis -ja päättymisaika","Käytetty lääkitys","Asteikolla lievä - sietämätön","Omat kommentit ja merkinnät");
-                Merkinta_lista.getInstance().getMerkinnat().add(0,temp);
-                sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                gson = new Gson();
-                json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
-                editor.putString("list", json);
-                editor.commit();
-            }else{
-                Merkinta_lista.getInstance().setMerkinnat(listanen);
-            }
-
+       sharedPref = getApplicationContext().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+       Gson gson = new Gson();
+       String json = sharedPref.getString("list", "");
+       Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
+       }.getType();
+       ArrayList<Uusi_merkinta> listanen;
+       listanen = gson.fromJson(json, type);
+       if(listanen == null){
+           listanen = new ArrayList<>();
+           listanen.add(new Uusi_merkinta("Esimerkki","Kohtauksen alkamis ja päättymis aika","Mahdollinen lääkitys","Arvioidaan kipumittarilla","Käyttäjän kommentit"));
+       }
+       Merkinta_lista.getInstance().setMerkinnat(listanen);
 
     }
+
+    /**
+     * saveData mehtod saves the Arraylist with the migraine entries to the shared preferences
+     */
     public void saveData() {
         if(Merkinta_lista.getInstance().getMerkinnat().get(0).getPaivamaara().equals("Esimerkki"))
         {
+            Log.d("MSG","kärsh it");
             Merkinta_lista.getInstance().getMerkinnat().remove(0);
-            SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+            sharedPref = getApplicationContext().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+            editor.putString("list", json);
+            editor.apply();
+        }else {
+            sharedPref = getApplicationContext().getSharedPreferences(mypreference, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             Gson gson = new Gson();
             String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
             editor.putString("list", json);
             editor.commit();
         }
-        SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
-        editor.putString("list", json);
-        editor.commit();
     }
 
     /**
@@ -183,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      *  Finds the current date and time
      *  Creates an object with those and adds it to the listView
-     *
+     * @param view
      */
     public void pikaMerkinta(View view){
 

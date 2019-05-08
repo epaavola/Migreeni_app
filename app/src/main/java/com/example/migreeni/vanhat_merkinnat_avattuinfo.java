@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * vanhat_merkinnat_avattuinfo class and activity shows the details of the chosen data entry
+ */
 public class vanhat_merkinnat_avattuinfo extends AppCompatActivity {
 
     @Override

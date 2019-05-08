@@ -1,5 +1,8 @@
 package com.example.migreeni;
 
+/**
+ * Uusi_merkinta class defines the object which is used to save the migraine note
+ */
 public class Uusi_merkinta {
 
 
@@ -9,6 +12,14 @@ public class Uusi_merkinta {
     private String kipu;
     private String lisatiedot;
 
+    /**
+     * Uusi_merkinta constructor sets the values of new migraine entry
+     * @param pvm
+     * @param aika
+     * @param laake
+     * @param kipu
+     * @param lisatiedot
+     */
     public Uusi_merkinta(String pvm, String aika, String laake, String kipu, String lisatiedot) {
         this.paivamaara = pvm;
         this.aika = aika;

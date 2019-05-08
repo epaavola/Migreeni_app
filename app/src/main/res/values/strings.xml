@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Migreeni</string>
+    <string name="app_name">Migreenipäiväkirja</string>
     <string name="image_meta">image</string>
     <string name="title_activity_valikko">valikko</string>
     <string name="title_section1">Section 1</string>
