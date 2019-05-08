@@ -45,6 +45,10 @@ public class saa extends AppCompatActivity {
     public String ilmpaine;
     Typeface weatherFont;
 
+    public saa(){
+
+    }
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +84,23 @@ public class saa extends AppCompatActivity {
 
     // Gets the weather info and shows the values in the view
     public void hae_saa(String lat, String longt) {
+
+        //Log.d(TAG, "latitude: " + lat);
+        //Log.d(TAG, "longtitude: " + longt);
+
+        // Find the widgets of saa-layout using ids
+        tv_kaupunki = findViewById(R.id.kaupunki_textview);
+        tv_ilmanpaine = findViewById(R.id.ilmanpaine_textview);
+        tv_kosteus = findViewById(R.id.kosteus_textview);
+        tv_lampotila = findViewById(R.id.lampotila_textview);
+        tv_yksityiskohta = findViewById(R.id.yksityiskohta_textview);
+        tv_saaikoni = findViewById(R.id.saaikoni_imageview);
+
+        weatherFont = Typeface.createFromAsset(getAssets(), "weathericons-regular-webfont.ttf");
+        tv_saaikoni.setTypeface(weatherFont);
+
+        //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
+        mQueue = Volley.newRequestQueue(this);
 
         //Log.d(TAG,"lat" + lat);       //tested the coordinates
         //Log.d(TAG,"long" + longt);
