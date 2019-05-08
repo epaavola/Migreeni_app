@@ -50,9 +50,13 @@ public class saa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
-        Bundle extras = getIntent().getExtras();
+        /*Bundle extras = getIntent().getExtras();
         String lat = extras.getString("latitude");
-        String longt = extras.getString("longtitude");
+        String longt = extras.getString("longtitude");*/
+
+        SharedPreferences koordinaatit_sharespreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
+        String lat = koordinaatit_sharespreferences.getString("latitude", "");
+        String longi = koordinaatit_sharespreferences.getString("longitude", "");
 
         //Log.d(TAG, "latitude: " + lat);
         //Log.d(TAG, "longtitude: " + longt);
@@ -71,7 +75,7 @@ public class saa extends AppCompatActivity {
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
         mQueue = Volley.newRequestQueue(this);
 
-        hae_saa(lat,longt);
+        hae_saa(lat,longi);
     }
 
     // Gets the weather info and shows the values in the view

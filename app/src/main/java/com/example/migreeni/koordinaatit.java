@@ -3,6 +3,7 @@ package com.example.migreeni;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -123,13 +124,20 @@ public class koordinaatit extends AppCompatActivity {
     }
 
 
-    public void hae_saatiedot(String lati, String longti) {
-        Intent nextActivity = new Intent(koordinaatit.this, saa.class);
+    public void hae_saatiedot(String lati, String longi) {
+        /*Intent nextActivity = new Intent(koordinaatit.this, saa.class);
         Bundle extrat = new Bundle();
         extrat.putString("latitude", lati);
         extrat.putString("longtitude", longti);
         nextActivity.putExtras(extrat);
 
-        startActivity(nextActivity);
+        startActivity(nextActivity);*/
+
+        SharedPreferences koordinaatit_sharedpreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
+        SharedPreferences.Editor koordinaatit_editor = koordinaatit_sharedpreferences.edit();
+
+        koordinaatit_editor.putString("latitude", lati);
+        koordinaatit_editor.putString("longitude", longi);
+        koordinaatit_editor.commit();
     }
 }

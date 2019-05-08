@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         //loadData(); // Load data from Shared Preferences
         lataaPaiviaValissa();
 
-        hae_vanhaip();
+        paivita_ilmanpaine();
+        //hae_vanhaip();
 
     }
 
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void paivita_ilmanpaine() {
 
         SharedPreferences ilmanpaine_psharedpreferences = getSharedPreferences("ilmanpaine_sharedpreferences", MODE_PRIVATE);
-        String ilpaine = ilmanpaine_psharedpreferences.getString("ilmanpaine", "");
+        String ilpaine = ilmanpaine_psharedpreferences.getString("ilmanpaine", "0");
         Log.d(TAG, ilpaine);
 
         if (ilpaine != null) {
@@ -87,28 +88,28 @@ public class MainActivity extends AppCompatActivity {
             ipaine_main.setText(ilpaine);
             Log.d(TAG, ilpaine);
 
-            SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
-            SharedPreferences.Editor ip_editor = ipsharedpreferences.edit();
+            //SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
+            //SharedPreferences.Editor ip_editor = ipsharedpreferences.edit();
 
-            ip_editor.putString("ipaine", ilpaine);
-            ip_editor.commit();
+            //ip_editor.putString("ipaine", ilpaine);
+            //ip_editor.commit();
         }
-        else {
-            hae_vanhaip();
-        }
+        //else {
+            //hae_vanhaip();
+        //}
     }
 
     /**
      *
      */
-    private void hae_vanhaip() {
+    /*private void hae_vanhaip() {
 
         SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
         String ipaine = ipsharedpreferences.getString("ipaine", "");
 
         TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
         ipaine_main.setText(ipaine);
-    }
+    }*/
 
 
     public void kalenteri_icon(View view) {
