@@ -34,37 +34,42 @@ public class koordinaatit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
-        requestPermission();
+        //requestPermission();
 
         client = LocationServices.getFusedLocationProviderClient(this);
 
-        if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+        /*if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             Log.d(TAG,"hyvaks");
             return;
+        }*/
+
+        if (ActivityCompat.checkSelfPermission(koordinaatit.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(koordinaatit.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(koordinaatit.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    1);
         }
 
-        client.getLastLocation().addOnSuccessListener(koordinaatit.this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
+            client.getLastLocation().addOnSuccessListener(koordinaatit.this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null) {
 
-                    String  latitude = String.valueOf(location.getLatitude());
-                    String longitude = String.valueOf(location.getLongitude());
+                        String latitude = String.valueOf(location.getLatitude());
+                        String longitude = String.valueOf(location.getLongitude());
 
-                    Log.d(TAG,"lat: "+ latitude);
-                    Log.d(TAG, "long " + longitude);
+                        Log.d(TAG, "lat: " + latitude);
+                        Log.d(TAG, "long " + longitude);
 
-                    laheta_koordinaatit(latitude, longitude);
+                        laheta_koordinaatit(latitude, longitude);
+                    }
+
                 }
-
-            }
-        });
-
+            });
     }
 
-    private void requestPermission() {
+    /*private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION},1);
-    }
+    }*/
 
     public void laheta_koordinaatit(String lati, String longi) {
         Intent nextActivity = new Intent(koordinaatit.this, saa.class);
