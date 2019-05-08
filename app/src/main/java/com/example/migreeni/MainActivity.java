@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String tag = "tagaus";
     public static final String TAG = "Ilmanpaine";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +45,12 @@ public class MainActivity extends AppCompatActivity {
         lataaPaiviaValissa();
 
         paivita_ilmanpaine();
-        //hae_vanhaip();
-
     }
 
     @Override
     public void onResume()
     {
         super.onResume();
-        Log.d(tag, "onresume called");
 
         paivita_ilmanpaine();
     }
@@ -87,30 +82,8 @@ public class MainActivity extends AppCompatActivity {
             TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
             ipaine_main.setText(ilpaine);
             Log.d(TAG, ilpaine);
-
-            //SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
-            //SharedPreferences.Editor ip_editor = ipsharedpreferences.edit();
-
-            //ip_editor.putString("ipaine", ilpaine);
-            //ip_editor.commit();
         }
-        //else {
-            //hae_vanhaip();
-        //}
     }
-
-    /**
-     *
-     */
-    /*private void hae_vanhaip() {
-
-        SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
-        String ipaine = ipsharedpreferences.getString("ipaine", "");
-
-        TextView ipaine_main = findViewById(R.id.ilmanpaine_main);
-        ipaine_main.setText(ipaine);
-    }*/
-
 
     public void kalenteri_icon(View view) {
         Intent intent = new Intent(this, kalenteri.class);

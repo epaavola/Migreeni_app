@@ -27,8 +27,6 @@ public class koordinaatit extends AppCompatActivity {
 
     private static final String TAG = "Koordinaatit";
 
-    //public String latitude, longtitude;
-
     private FusedLocationProviderClient client;
 
     @Override
@@ -68,7 +66,6 @@ public class koordinaatit extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION},1);
     }
 
-
     public void laheta_koordinaatit(String lati, String longi) {
         Intent nextActivity = new Intent(koordinaatit.this, saa.class);
         Bundle extrat = new Bundle();
@@ -77,17 +74,6 @@ public class koordinaatit extends AppCompatActivity {
         nextActivity.putExtras(extrat);
 
         startActivity(nextActivity);
+        finish();
     }
 }
-
-        //saa saahaku = new saa();
-
-
-        /*SharedPreferences koordinaatit_sharedpreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
-        SharedPreferences.Editor koordinaatit_editor = koordinaatit_sharedpreferences.edit();
-
-        koordinaatit_editor.putString("latitude", lati);
-        koordinaatit_editor.putString("longitude", longi);
-        koordinaatit_editor.commit();*/
-
-        //saahaku.haetaan_saaobjektit(lati,longi);

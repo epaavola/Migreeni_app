@@ -67,10 +67,6 @@ public class saa extends AppCompatActivity {
         String lat = extras.getString("latitude");
         String longi = extras.getString("longtitude");
 
-        /*SharedPreferences koordinaatit_sharespreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
-        String lat = koordinaatit_sharespreferences.getString("latitude", "");
-        String longi = koordinaatit_sharespreferences.getString("longitude", "");*/
-
         Log.d(TAG, "latitude1: " + lat);
         Log.d(TAG, "longitude1: " + longi);
 
@@ -146,23 +142,9 @@ public class saa extends AppCompatActivity {
         // Add the request to the RequestQueue.
         mQueue.add(haku);
 
+        finish();
+
     }
-
-    /*@Override
-    public void onPause()
-    {
-        super.onPause();
-        Log.d(TAG, "onPause called");
-        Intent nextActivity = new Intent(saa.this, MainActivity.class);
-        Bundle extra = new Bundle();
-        extra.putString("ilmanpaine", ilmpaine);
-        nextActivity.putExtras(extra);
-
-        Log.d(TAG, "ilm: " + ilmpaine);
-
-        startActivity(nextActivity);
-
-    }*/
 
     public static String setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
@@ -192,6 +174,4 @@ public class saa extends AppCompatActivity {
         }
         return icon;
     }
-
-
 }
