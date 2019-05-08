@@ -137,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
         if(Merkinta_lista.getInstance().getMerkinnat().isEmpty())
         {
             Log.d("MSG","Ei vanhoja merkintöjä");
+            Uusi_merkinta temp = new Uusi_merkinta("","","","","");
+            Merkinta_lista.getInstance().getMerkinnat().add(0,temp);
+            SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPref.getString("list", null);
+            Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
+            }.getType();
+            ArrayList listanen;
+            listanen = gson.fromJson(json, type);
+            Merkinta_lista.getInstance().setMerkinnat(listanen);
         } else {
             SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
             Gson gson = new Gson();
