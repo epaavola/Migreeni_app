@@ -52,6 +52,9 @@ public class saa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
+    }
+
+    public void haetaan_saaobjektit() {
 
         /*Bundle extras = getIntent().getExtras();
         String lat = extras.getString("latitude");
@@ -61,8 +64,8 @@ public class saa extends AppCompatActivity {
         String lat = koordinaatit_sharespreferences.getString("latitude", "");
         String longi = koordinaatit_sharespreferences.getString("longitude", "");
 
-        //Log.d(TAG, "latitude: " + lat);
-        //Log.d(TAG, "longtitude: " + longt);
+        Log.d(TAG, "latitude1: " + lat);
+        Log.d(TAG, "longitude1: " + longi);
 
         // Find the widgets of saa-layout using ids
         tv_kaupunki = findViewById(R.id.kaupunki_textview);
@@ -76,7 +79,7 @@ public class saa extends AppCompatActivity {
         tv_saaikoni.setTypeface(weatherFont);
 
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
-        //mQueue = Volley.newRequestQueue(this);
+        mQueue = Volley.newRequestQueue(this);
 
         hae_saa(lat,longi);
     }
@@ -84,11 +87,8 @@ public class saa extends AppCompatActivity {
     // Gets the weather info and shows the values in the view
     public void hae_saa(String lat, String longt) {
 
-        Log.d(TAG, "latitude: " + lat);
-        Log.d(TAG, "longtitude: " + longt);
-
-        //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
-        mQueue = Volley.newRequestQueue(this);
+        Log.d(TAG, "latitude2: " + lat);
+        Log.d(TAG, "longtitude2: " + longt);
 
         String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + longt + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
 

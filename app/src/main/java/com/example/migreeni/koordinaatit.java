@@ -58,7 +58,7 @@ public class koordinaatit extends AppCompatActivity {
                     Log.d(TAG,"lat: "+ latitude);
                     Log.d(TAG, "long " + longitude);
 
-                    hae_saatiedot(latitude, longitude);
+                    laheta_koordinaatit(latitude, longitude);
                 }
 
             }
@@ -124,7 +124,7 @@ public class koordinaatit extends AppCompatActivity {
     }
 
 
-    public void hae_saatiedot(String lati, String longi) {
+    public void laheta_koordinaatit(String lati, String longi) {
         /*Intent nextActivity = new Intent(koordinaatit.this, saa.class);
         Bundle extrat = new Bundle();
         extrat.putString("latitude", lati);
@@ -143,6 +143,6 @@ public class koordinaatit extends AppCompatActivity {
         koordinaatit_editor.putString("longitude", longi);
         koordinaatit_editor.commit();
 
-        saahaku.hae_saa(lati,longi);
+        saahaku.haetaan_saaobjektit();
     }
 }
