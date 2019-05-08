@@ -11,6 +11,15 @@ public class vanhat_merkinnat_avattuinfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vanhat_merkinnat_avattuinfo);
 
+        asetaTiedot();
+    }
+
+    /**
+     *  Retrieves and sets the information to the specified textViews
+     *
+     */
+    public void asetaTiedot(){
+
         Bundle b = getIntent().getExtras();
         int position = b.getInt(vanhat_merkinnat.EXTRA, 0);
 
@@ -35,6 +44,6 @@ public class vanhat_merkinnat_avattuinfo extends AppCompatActivity {
 
         TextView tv5 = findViewById(R.id.textView_extra);
         tv5.setText(extra);
-
     }
+
 }

@@ -22,11 +22,13 @@
     <string name="päivämäärä_placehold">9/5/2019</string>
     <string name="lisatietoja_placeholder">Kirjoita tähän</string>
 
-    <string name="vanhat_merkinnat_otsikko">Aiemmat merkinnät</string>
     <string name="viime_merkinta_def_arvo">0</string>
+    <string name="pikamerkinta">Pika-\nmerkintä</string>
 
+    <string name="vanhat_merkinnat_otsikko">Aiemmat merkinnät</string>
     <string name="vanhat_merkinnat_avattu_otsikko">Otsikko_placeholder</string>
     <string name="vanhat_merkinnat_avattu_info">Sisältö_placeholder</string>
+    <string name="clear_list_button">Poista merkinnät</string>
 
     <string name="kalenteri_otsikko">Kalenteri</string>
     <string name="kalenteri_pvm"> </string>
@@ -40,7 +42,7 @@
     <string name="kipumittari3">Kohtalainen</string>
     <string name="kipumittari4">Voimakas</string>
     <string name="kipumittari5">Sietämätön</string>
-    <string name="clear_list_button">Poista merkinnät</string>
+
 
     <string name="pros_merkki">%</string>
     <string name="hpa_merkki">hpa</string>

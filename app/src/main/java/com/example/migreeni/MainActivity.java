@@ -37,20 +37,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String tag = "tagaus";
     public static final String TAG = "Ilmanpaine";
 
-    public long paiviaValissa(Date one, Date two){
 
-        // lasketaan päivämäärien välinen erotus, jaetaan tulos millisekunneilla/päivä
-        long erotus = ((one.getTime()-two.getTime())/86400000);
-        return Math.abs(erotus);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //loadData(); // Load data from Shared Preferences
-        loadPaivia();
+        lataaPaiviaValissa();
 
         hae_vanhaip();
 
@@ -65,6 +59,23 @@ public class MainActivity extends AppCompatActivity {
         paivita_ilmanpaine();
     }
 
+    /**
+     * Returns the difference between two days given to it
+     * Calculates the difference and divides that by the amount of milliseconds in a day
+     *
+     * @param one is the first given day
+     * @param two is the second given day
+     * @return returns the amount of days between the given days
+     */
+    public long paiviaValissa(Date one, Date two){
+
+        long erotus = ((one.getTime()-two.getTime())/86400000);
+        return Math.abs(erotus);
+    }
+
+    /**
+     *
+     */
     private void paivita_ilmanpaine() {
 
         SharedPreferences ilmanpaine_psharedpreferences = getSharedPreferences("ilmanpaine_sharedpreferences", MODE_PRIVATE);
@@ -85,9 +96,11 @@ public class MainActivity extends AppCompatActivity {
         else {
             hae_vanhaip();
         }
-
     }
 
+    /**
+     *
+     */
     private void hae_vanhaip() {
 
         SharedPreferences ipsharedpreferences = getSharedPreferences("ipsharedpreferences", MODE_PRIVATE);
@@ -130,7 +143,13 @@ public class MainActivity extends AppCompatActivity {
         Merkinta_lista.getInstance().setMerkinnat(listanen);
     }
 
-    public void loadPaivia(){
+    /**
+     *  Finds the day of the last entry and the current day
+     *  Takes the days to long paiviaValissa to calculate the difference
+     *  Returns the result to be shown in a textView
+     *
+     */
+    public void lataaPaiviaValissa(){
 
         Calendar kal = Calendar.getInstance();
         String paivamaara = "";
@@ -152,11 +171,18 @@ public class MainActivity extends AppCompatActivity {
 
         Date tanaan = new Date();
         MainActivity obj = new MainActivity();
+
         long paivat = obj.paiviaValissa(tanaan, viime_merkinta_paiva);
+
         TextView tvPaivia = findViewById(R.id.viime_merkinta_arvo);
         tvPaivia.setText(String.valueOf(paivat));
     }
 
+    /**
+     *  Finds the current date and time
+     *  Creates an object with those and adds it to the listView
+     *
+     */
     public void pikaMerkinta(View view){
         Date date = new Date();
         DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
@@ -166,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         DateFormat format2 = new SimpleDateFormat("HH:mm:ss");
         String aika = format2.format(time);
 
-        Uusi_merkinta pika = new Uusi_merkinta(tanaan, aika, "","","");
+        Uusi_merkinta pika = new Uusi_merkinta(tanaan, aika, "","","Pikamerkintä");
         Merkinta_lista.getInstance().getMerkinnat().add(pika);
 
         Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,7 +14,6 @@ import com.google.gson.Gson;
 
 public class vanhat_merkinnat extends AppCompatActivity {
 
-    private static final String tagi = "Merkkaus";
     public static final String EXTRA = "";
     ListView lv;
 
@@ -24,8 +22,16 @@ public class vanhat_merkinnat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vanhat_merkinnat);
 
-        Log.d(tagi, "aktiviteetissa: vanhat merkinnat");
-        //List merkinnat_lista = Merkinta_lista.getInstance().getMerkinnat();
+        luoLista();
+
+    }
+
+    /**
+     * Creates a listView in which it will show all the entries by the user.
+     * By clicking an item from the list, an activity that shows details of the chosen item starts.
+     *
+     */
+    public void luoLista(){
 
         lv = findViewById(R.id.vanhat_merkinnat_lista);
         ArrayAdapter adapter = (new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Merkinta_lista.getInstance().getMerkinnat()));
@@ -42,6 +48,11 @@ public class vanhat_merkinnat extends AppCompatActivity {
         });
     }
 
+    /**
+     * Deletes all the entries from the listView
+     *
+     * @param view
+     */
     public void poista_merkinnat(View view){
         Merkinta_lista.getInstance().clearMerkinnat();
         lv.setAdapter(null);
