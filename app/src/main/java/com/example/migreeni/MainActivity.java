@@ -134,37 +134,46 @@ public class MainActivity extends AppCompatActivity {
 
     // Load list of entries from shared preferences
     public void loadData() {
-        if(Merkinta_lista.getInstance().getMerkinnat().isEmpty())
-        {
-            Log.d("MSG","Ei vanhoja merkintöjä");
-            Uusi_merkinta temp = new Uusi_merkinta("","","","","");
-            Merkinta_lista.getInstance().getMerkinnat().add(0,temp);
-            SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+       SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
             Gson gson = new Gson();
             String json = sharedPref.getString("list", null);
             Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
             }.getType();
             ArrayList listanen;
             listanen = gson.fromJson(json, type);
-            Merkinta_lista.getInstance().setMerkinnat(listanen);
-        } else {
-            SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
-            Gson gson = new Gson();
-            String json = sharedPref.getString("list", null);
-            Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
-            }.getType();
-            ArrayList listanen;
-            listanen = gson.fromJson(json, type);
-            Merkinta_lista.getInstance().setMerkinnat(listanen);
-        }
+            if(listanen.isEmpty()){
+                Log.d("MSG","Ei vanhoja merkintöjä");
+                Uusi_merkinta temp = new Uusi_merkinta("Esimerkki","Kohtauksen alkamis -ja päättymisaika","Käytetty lääkitys","Asteikolla lievä - sietämätön","Omat kommentit ja merkinnät");
+                Merkinta_lista.getInstance().getMerkinnat().add(0,temp);
+                sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                gson = new Gson();
+                json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+                editor.putString("list", json);
+                editor.commit();
+            }else{
+                Merkinta_lista.getInstance().setMerkinnat(listanen);
+            }
+
+
     }
     public void saveData() {
+        if(Merkinta_lista.getInstance().getMerkinnat().get(0).getPaivamaara().equals("Esimerkki"))
+        {
+            Merkinta_lista.getInstance().getMerkinnat().remove(0);
+            SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+            editor.putString("list", json);
+            editor.commit();
+        }
         SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         Gson gson = new Gson();
         String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
         editor.putString("list", json);
-        editor.apply();
+        editor.commit();
     }
 
     /**
