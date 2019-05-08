@@ -40,8 +40,8 @@ public class saa extends AppCompatActivity {
 
     private static final String TAG = "SAA";
 
-    private TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
-    private RequestQueue mQueue;
+    public TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
+    public RequestQueue mQueue;
     public String ilmpaine;
     Typeface weatherFont;
 
