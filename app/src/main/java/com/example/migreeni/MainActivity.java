@@ -1,20 +1,12 @@
 package com.example.migreeni;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.preference.PreferenceManager;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +14,12 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadData(); // Load data from Shared Preferences
+        //loadData(); // Load data from Shared Preferences
         lataaPaiviaValissa();
 
         paivita_ilmanpaine();
@@ -163,15 +153,21 @@ public class MainActivity extends AppCompatActivity {
 
         int index = Merkinta_lista.getInstance().getMerkinnat().size();
         index--;
+
         if(index >= 0){
+
             paivamaara = Merkinta_lista.getInstance().getMerkinnat().get(index).getPaivamaara();
         }
+
         Date viime_merkinta_paiva = kal.getTime();
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
+
             viime_merkinta_paiva = formatter.parse(paivamaara);
+
         } catch (ParseException e) {
+
             e.printStackTrace();
         }
 
@@ -190,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void pikaMerkinta(View view){
+
         Date date = new Date();
         DateFormat format1 = new SimpleDateFormat("d/M/yyyy");
         String tanaan = format1.format(date);
@@ -203,6 +200,4 @@ public class MainActivity extends AppCompatActivity {
         saveData();
         Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();
     }
-
-
 }

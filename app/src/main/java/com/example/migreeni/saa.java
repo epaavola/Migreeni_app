@@ -142,7 +142,7 @@ public class saa extends AppCompatActivity {
         // Add the request to the RequestQueue.
         mQueue.add(haku);
 
-        finish();
+        //finish();
 
     }
 

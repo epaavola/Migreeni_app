@@ -26,7 +26,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-
         android:id="@+id/vanhat_merkinnat_lista"
         android:layout_width="315dp"
         android:layout_height="399dp"
@@ -37,7 +36,7 @@
 
         android:background="@drawable/corner_rad"
         android:fontFamily="@font/raleway"
-
+        android:gravity="center"
         android:divider="#80FFFFFF"
         android:dividerHeight="1dp"
 
@@ -46,22 +45,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.478" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        app:layout_constraintGuide_percent="0.20066334" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        app:layout_constraintGuide_percent="0.8" />
 
     <Button
         android:id="@+id/clear_list"
@@ -98,5 +81,21 @@
         android:orientation="vertical"
 
         app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintGuide_percent="0.20066334" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintGuide_percent="0.8" />
 
 </android.support.constraint.ConstraintLayout>

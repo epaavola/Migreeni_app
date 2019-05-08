@@ -10,8 +10,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
-
     <string name="action_settings">Settings</string>
+
     <string name="merkinta_otsikko">Lisää uusi merkintä</string>
     <string name="pvm_otsikko">Päivämäärä</string>
     <string name="aika_otsikko">Aika</string>
@@ -42,7 +42,6 @@
     <string name="kipumittari3">Kohtalainen</string>
     <string name="kipumittari4">Voimakas</string>
     <string name="kipumittari5">Sietämätön</string>
-
 
     <string name="pros_merkki">%</string>
     <string name="hpa_merkki">hpa</string>

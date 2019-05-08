@@ -51,7 +51,7 @@ public class vanhat_merkinnat extends AppCompatActivity {
     /**
      * Deletes all the entries from the listView
      *
-     * @param view
+     * @param view the view
      */
     public void poista_merkinnat(View view){
         Merkinta_lista.getInstance().clearMerkinnat();
