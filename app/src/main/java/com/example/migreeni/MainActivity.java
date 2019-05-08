@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //loadData(); // Load data from Shared Preferences
+        loadData(); // Load data from Shared Preferences
         lataaPaiviaValissa();
 
         paivita_ilmanpaine();
@@ -134,14 +134,27 @@ public class MainActivity extends AppCompatActivity {
 
     // Load list of entries from shared preferences
     public void loadData() {
+        if(Merkinta_lista.getInstance().getMerkinnat().isEmpty())
+        {
+            Log.d("MSG","Ei vanhoja merkintöjä");
+        } else {
+            SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPref.getString("list", null);
+            Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
+            }.getType();
+            ArrayList listanen;
+            listanen = gson.fromJson(json, type);
+            Merkinta_lista.getInstance().setMerkinnat(listanen);
+        }
+    }
+    public void saveData() {
         SharedPreferences sharedPref = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
         Gson gson = new Gson();
-        String json = sharedPref.getString("list", null);
-        Type type = new TypeToken<ArrayList<Uusi_merkinta>>() {
-        }.getType();
-        ArrayList listanen;
-        listanen = gson.fromJson(json, type);
-        Merkinta_lista.getInstance().setMerkinnat(listanen);
+        String json = gson.toJson(Merkinta_lista.getInstance().getMerkinnat());
+        editor.putString("list", json);
+        editor.apply();
     }
 
     /**
@@ -186,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void pikaMerkinta(View view){
         Date date = new Date();
-        DateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat format1 = new SimpleDateFormat("d/M/yyyy");
         String tanaan = format1.format(date);
 
         Date time = Calendar.getInstance().getTime();
@@ -195,8 +208,9 @@ public class MainActivity extends AppCompatActivity {
 
         Uusi_merkinta pika = new Uusi_merkinta(tanaan, aika, "","","Pikamerkintä");
         Merkinta_lista.getInstance().getMerkinnat().add(pika);
-
+        saveData();
         Toast.makeText(this,"Merkintä tallennettu",Toast.LENGTH_LONG).show();
     }
+
 
 }

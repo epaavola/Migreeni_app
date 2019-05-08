@@ -19,6 +19,12 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+/**
+ * Merkinta luokka ja merkinta activity toteuttaa *Lisää Uusi Merkintä' -toiminnon.
+ * Merkinta luokan päätehtävä on poimia käyttäjän syöttämät tiedot, vertailla arvoja tarvittaessa
+ * ja tallentaa tiedot Merkinta_lista singletonissa sijaitsevaan arraylistiin Merkintä olioina.
+ * Tallennus suoritetaan, kun käyttäjä painaa Merkinta activityssä olevaa 'tallenna' painiketta.
+ */
 public class merkinta extends AppCompatActivity {
 
     @Override
