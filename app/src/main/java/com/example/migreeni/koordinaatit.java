@@ -23,6 +23,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
+/**
+ *
+ * Class that gets the users coordinates
+ */
+
 public class koordinaatit extends AppCompatActivity {
 
     private static final String TAG = "Koordinaatit";
@@ -34,43 +39,47 @@ public class koordinaatit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
 
-        //requestPermission();
+        requestPermission();
 
         client = LocationServices.getFusedLocationProviderClient(this);
 
-        /*if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            Log.d(TAG,"hyvaks");
-            return;
-        }*/
 
-        if (ActivityCompat.checkSelfPermission(koordinaatit.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(koordinaatit.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(koordinaatit.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    1);
+        // if user doesn't allow the current location
+        if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            return;
         }
 
-            client.getLastLocation().addOnSuccessListener(koordinaatit.this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
+        // Use the methods that google provides to get the users current location
+        client.getLastLocation().addOnSuccessListener(koordinaatit.this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
 
-                        String latitude = String.valueOf(location.getLatitude());
-                        String longitude = String.valueOf(location.getLongitude());
+                    //get the users current latitude and longitude
+                    String  latitude = String.valueOf(location.getLatitude());
+                    String longitude = String.valueOf(location.getLongitude());
 
-                        Log.d(TAG, "lat: " + latitude);
-                        Log.d(TAG, "long " + longitude);
+                    Log.d(TAG,"lat: "+ latitude);
+                    Log.d(TAG, "long " + longitude);
 
-                        laheta_koordinaatit(latitude, longitude);
-                    }
-
+                    laheta_koordinaatit(latitude, longitude);
                 }
-            });
+
+            }
+        });
+
     }
 
-    /*private void requestPermission() {
+    // Ask the user for permission to use current location
+    private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION},1);
-    }*/
+    }
 
+    /**
+     * Send the coordinates to saa-class
+     * @param lati, current latitude
+     * @param longi, current longitude
+     */
     public void laheta_koordinaatit(String lati, String longi) {
         Intent nextActivity = new Intent(koordinaatit.this, saa.class);
         Bundle extrat = new Bundle();

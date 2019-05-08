@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Update the main-views pressure-view to show the saved pressure from the shared preferences
      */
     private void paivita_ilmanpaine() {
 

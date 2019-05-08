@@ -36,14 +36,18 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Date;
 
+/**
+ * Class that gets the current weather using Openweathermap API
+ */
+
 public class saa extends AppCompatActivity {
 
     private static final String TAG = "SAA";
 
-    public TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
-    public RequestQueue mQueue;
-    public String ilmpaine;
-    public Typeface weatherFont;
+    private TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
+    private RequestQueue mQueue;
+    private String ilmpaine;
+    Typeface weatherFont;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,28 +61,31 @@ public class saa extends AppCompatActivity {
         tv_yksityiskohta = findViewById(R.id.yksityiskohta_textview);
         tv_saaikoni = findViewById(R.id.saaikoni_imageview);
 
+        // We use weather-icons that we get from this asset
         weatherFont = Typeface.createFromAsset(getAssets(), "weathericons-regular-webfont.ttf");
         tv_saaikoni.setTypeface(weatherFont);
 
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
         mQueue = Volley.newRequestQueue(this);
 
+        //Get the coordinates from the koordinaatit-class
         Bundle extras = getIntent().getExtras();
         String lat = extras.getString("latitude");
         String longi = extras.getString("longtitude");
 
-        Log.d(TAG, "latitude1: " + lat);
-        Log.d(TAG, "longitude1: " + longi);
+        //Log.d(TAG, "latitude: " + lat);
+        //Log.d(TAG, "longitude: " + longi);
 
         hae_saa(lat,longi);
     }
 
 
-    // Gets the weather info and shows the values in the view
+    /**
+     * Gets the weather info and shows the values in the view
+     * @param lat latitude, we get from koordinaatit-class
+     * @param longt longitude, we get from koordinaatit-class
+     */
     public void hae_saa(String lat, String longt) {
-
-        Log.d(TAG, "latitude2: " + lat);
-        Log.d(TAG, "longtitude2: " + longt);
 
         String url = "https:/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + longt + "&appid=e629dbb8cc92982ffed615b4524532b6&units=metric";
 
@@ -108,19 +115,19 @@ public class saa extends AppCompatActivity {
 
                     ilmpaine = ipaine;
 
-                    Log.d(TAG, "paine: " +ilmpaine);
-                    Log.d(TAG, "lampo :" + lampo);
-
+                    // Save "ilmanpaine" to the shared preferences, so we get the value to MainActivity
                     SharedPreferences ilmanpaine_sharedpreferences = getSharedPreferences("ilmanpaine_sharedpreferences", MODE_PRIVATE);
                     SharedPreferences.Editor ilmanpaine_editor = ilmanpaine_sharedpreferences.edit();
 
                     ilmanpaine_editor.putString("ilmanpaine", ilmpaine);
                     ilmanpaine_editor.commit();
 
+                    // Get the info to set the weather icon
                     int id = object.getInt("id");
                     long sunri = sys.getLong("sunrise") * 1000;
                     long sunse = sys.getLong("sunset") * 1000;
 
+                    // Set the weather icon to view
                     tv_saaikoni.setText(Html.fromHtml(setWeatherIcon(id ,sunri, sunse)));
 
                 } catch (JSONException e) {
@@ -142,10 +149,16 @@ public class saa extends AppCompatActivity {
         // Add the request to the RequestQueue.
         mQueue.add(haku);
 
-        //finish();
-
     }
 
+    /**
+     * Gets the new weather icon using the assets
+     * @param actualId , id for the icon we got from api
+     * @param sunrise, sunrise time, got from api
+     * @param sunset, sunset time, got from api
+     * @return icon we show in the view
+     */
+    // Code for this method got from here: https://androstock.com/tutorials/create-a-weather-app-on-android-android-studio.html
     public static String setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
         String icon = "";
