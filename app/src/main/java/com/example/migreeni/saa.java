@@ -45,53 +45,9 @@ public class saa extends AppCompatActivity {
     public String ilmpaine;
     public Typeface weatherFont;
 
-    public saa(){
-
-    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saa);
-    }
-
-    public void haetaan_saaobjektit(String lat, String longi) {
-        setContentView(R.layout.activity_saa);
-
-        /*Bundle extras = getIntent().getExtras();
-        String lat = extras.getString("latitude");
-        String longt = extras.getString("longtitude");*/
-
-        //SharedPreferences koordinaatit_sharespreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
-        //String lat = koordinaatit_sharespreferences.getString("latitude", "");
-        //String longi = koordinaatit_sharespreferences.getString("longitude", "");
-
-        Log.d(TAG, "latitude1: " + lat);
-        Log.d(TAG, "longitude1: " + longi);
-
-        /*// Find the widgets of saa-layout using ids
-        tv_kaupunki = findViewById(R.id.kaupunki_textview);
-        tv_ilmanpaine = findViewById(R.id.ilmanpaine_textview);
-        tv_kosteus = findViewById(R.id.kosteus_textview);
-        tv_lampotila = findViewById(R.id.lampotila_textview);
-        tv_yksityiskohta = findViewById(R.id.yksityiskohta_textview);
-        tv_saaikoni = findViewById(R.id.saaikoni_imageview);
-
-        weatherFont = Typeface.createFromAsset(getAssets(), "weathericons-regular-webfont.ttf");
-        tv_saaikoni.setTypeface(weatherFont);
-
-        //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
-        mQueue = Volley.newRequestQueue(this);*/
-
-        hae_saa(lat,longi);
-    }
-
-    // Gets the weather info and shows the values in the view
-    public void hae_saa(String lat, String longt) {
-        setContentView(R.layout.activity_saa);
-
-        final TextView tv_kaupunki, tv_lampotila, tv_ilmanpaine, tv_kosteus, tv_yksityiskohta, tv_saaikoni;
-        RequestQueue mQueue;
-        Typeface weatherFont;
 
         // Find the widgets of saa-layout using ids
         tv_kaupunki = findViewById(R.id.kaupunki_textview);
@@ -107,6 +63,23 @@ public class saa extends AppCompatActivity {
         //RequestQueue manages worker threads for running the network operations, reading from and writing to the cache, and parsing responses.
         mQueue = Volley.newRequestQueue(this);
 
+        Bundle extras = getIntent().getExtras();
+        String lat = extras.getString("latitude");
+        String longi = extras.getString("longtitude");
+
+        /*SharedPreferences koordinaatit_sharespreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
+        String lat = koordinaatit_sharespreferences.getString("latitude", "");
+        String longi = koordinaatit_sharespreferences.getString("longitude", "");*/
+
+        Log.d(TAG, "latitude1: " + lat);
+        Log.d(TAG, "longitude1: " + longi);
+
+        hae_saa(lat,longi);
+    }
+
+
+    // Gets the weather info and shows the values in the view
+    public void hae_saa(String lat, String longt) {
 
         Log.d(TAG, "latitude2: " + lat);
         Log.d(TAG, "longtitude2: " + longt);
@@ -137,8 +110,6 @@ public class saa extends AppCompatActivity {
                     tv_ilmanpaine.setText(ipaine);
                     tv_kosteus.setText(kosteus);
 
-
-                    String ilmpaine;
                     ilmpaine = ipaine;
 
                     Log.d(TAG, "paine: " +ilmpaine);

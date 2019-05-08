@@ -23,7 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-
 public class koordinaatit extends AppCompatActivity {
 
     private static final String TAG = "Koordinaatit";
@@ -39,11 +38,10 @@ public class koordinaatit extends AppCompatActivity {
 
         requestPermission();
 
-        //LocationManager location_manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
         client = LocationServices.getFusedLocationProviderClient(this);
 
         if (ActivityCompat.checkSelfPermission(koordinaatit.this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            Log.d(TAG,"hyvaks");
             return;
         }
 
@@ -64,59 +62,6 @@ public class koordinaatit extends AppCompatActivity {
             }
         });
 
-
-        /*LocationListener location_listener = new
-
-                LocationListener() {
-
-                    // gets called when the location is updated
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        latitude = String.valueOf(location.getLatitude());
-                        longtitude = String.valueOf(location.getLongitude());
-                        //Log.d(TAG,"lat" + latitude);
-                        //Log.d(TAG,"long" + longtitude);
-
-                        // Find the weather based on your coordinates
-                        hae_saatiedot(latitude, longtitude);
-
-                    }
-
-                    @Override
-                    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                    }
-
-                    @Override
-                    public void onProviderEnabled(String s) {
-
-                    }
-
-                    // If gps is setted off > open settings
-                    @Override
-                    public void onProviderDisabled(String provider) {
-                        Intent asetukset = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(asetukset);
-                    }
-
-                };
-
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                                != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-
-                location_manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, location_listener);*/
-
     }
 
     private void requestPermission() {
@@ -125,15 +70,17 @@ public class koordinaatit extends AppCompatActivity {
 
 
     public void laheta_koordinaatit(String lati, String longi) {
-        /*Intent nextActivity = new Intent(koordinaatit.this, saa.class);
+        Intent nextActivity = new Intent(koordinaatit.this, saa.class);
         Bundle extrat = new Bundle();
         extrat.putString("latitude", lati);
-        extrat.putString("longtitude", longti);
+        extrat.putString("longtitude", longi);
         nextActivity.putExtras(extrat);
 
-        startActivity(nextActivity);*/
+        startActivity(nextActivity);
+    }
+}
 
-        saa saahaku = new saa();
+        //saa saahaku = new saa();
 
 
         /*SharedPreferences koordinaatit_sharedpreferences = getSharedPreferences("koordinaatit_sharedpreferences", MODE_PRIVATE);
@@ -143,6 +90,4 @@ public class koordinaatit extends AppCompatActivity {
         koordinaatit_editor.putString("longitude", longi);
         koordinaatit_editor.commit();*/
 
-        saahaku.haetaan_saaobjektit(lati,longi);
-    }
-}
+        //saahaku.haetaan_saaobjektit(lati,longi);
