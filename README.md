@@ -1,7 +1,7 @@
 # Migreeni_app
 Migreenipäiväkirja
 
-Migreenin seurantaan tarkoitettu mobiilisovellus
+Migreenin seurantaan tarkoitettu mobiilisovellus. Sovellus tehtiin tieto- ja viestintätekniikan koulutusohjelman mobiilit terveyssovellukset kurssilla. Projekti toteutettiin kolmen hengen <strong>ryhmätyönä</strong>.
 
 
 Mikä migreeni?
